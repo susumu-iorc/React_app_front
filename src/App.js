@@ -7,7 +7,11 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
+<<<<<<< HEAD
           Edit <code>src/App.js</code> and save to reload.
+=======
+          <code>src/App.js</code> and save to reload.
+>>>>>>> true-win-Hot-reload
         </p>
         <a
           className="App-link"

@@ -12,7 +12,12 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
+<<<<<<< HEAD
     "start": "react-scripts start",
+=======
+    "start_org": "react-scripts start",
+    "start": "WATCHPACK_POLLING=true react-scripts start",
+>>>>>>> true-win-Hot-reload
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
