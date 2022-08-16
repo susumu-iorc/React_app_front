@@ -1,11 +1,8 @@
-import logo from './logo.svg';
-import './App.css';
-import {Header} from './modules/Header';
-import {Button} from '@material-ui/core';
+import { Link } from "react-router-dom";
 
-function App() {
+const Login = () => {
   return (
-    <Header />
+    <>
     <div className="formContainer">
       <form>
         <h1>ログインフォーム</h1>
@@ -23,7 +20,8 @@ function App() {
         </div>
       </form>
     </div>
+    </>
   );
-}
+};
 
-export default App;
+export default Login;
