@@ -3,22 +3,22 @@ import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-
-          <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="formContainer">
+      <form>
+        <h1>ログインフォーム</h1>
+        <hr />
+        <div className="uiForm">
+          <div className="formField">
+            <label>メールアドレス</label>
+            <input type="text" placeholder="メールアドレス" name="mailAddress" />
+          </div>
+          <div className="formField">
+            <label>パスワード</label>
+            <input type="text" placeholder="パスワード" name="password" />
+          </div>
+          <button className= "submitButton">ログイン</button>
+        </div>
+      </form>
     </div>
   );
 }
