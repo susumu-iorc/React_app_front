@@ -1,26 +1,9 @@
-import logo from './logo.svg';
-import './App.css';
-
+import {Header} from "./components/Header";
 function App() {
   return (
-    <div className="formContainer">
-      <form>
-        <h1>ログインフォーム</h1>
-        <hr />
-        <div className="uiForm">
-          <div className="formField">
-            <label>メールアドレス</label>
-            <input type="text" placeholder="メールアドレス" name="mailAddress" />
-          </div>
-          <div className="formField">
-            <label>パスワード</label>
-            <input type="text" placeholder="パスワード" name="password" />
-          </div>
-          <button className= "submitButton">ログイン</button>
-        </div>
-      </form>
+    <div className="content">
+      <Header />
     </div>
   );
 }
-
 export default App;
