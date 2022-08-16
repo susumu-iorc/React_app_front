@@ -1,5 +1,5 @@
 import { AppBar, Toolbar, Typography, Button } from "@material-ui/core";
-import React from "react";
+import {React} from "react";
 
 
 export const Header = () => {
