@@ -12,13 +12,18 @@ const App = () => {
   const [loggedInStatus, setLoggedInStatus] = useState("未ログイン")
   const [user, setUser] = useState({})
 
+  const handleLogin = (data) => {
+    setLoggedInStatus("ログインなう")
+    setUser(data.user)
+  }
+
   return (
     <BrowserRouter>
       <Routes>
-        <Route path={'/'} element={<Home loggedInStatus={loggedInStatus}/>} />
+        <Route path={'/'} element={<Home loggedInStatus={loggedInStatus} handleLogin={handleLogin}/>} />
         <Route path={'/register/'} element={<Register />} />
         <Route path={'/login/'} element={<Login />} />
-        <Route path={"/dashboard"} element={<Dashboard />} />
+        <Route path={"/dashboard"} element={<Dashboard loggedInStatus={loggedInStatus} handleLogin={handleLogin}/>} />
       </Routes>
     </BrowserRouter>
   );

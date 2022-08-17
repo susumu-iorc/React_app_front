@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
 
-const Dashboard = () => {
+const Dashboard = (props) => {
     return (
       <>
-        <h1>だっしゅぼーど</h1>
         <div>
-          新規登録は<Link to={`/register/`}>こちら</Link>
+            <h1>Dashboard</h1>
+            <h2>ログイン状態: {props.loggedInStatus}</h2>
         </div>
       </>
     );

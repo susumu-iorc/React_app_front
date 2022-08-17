@@ -1,22 +1,21 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Register from "./Register";
 
 const Home = (props) => {
+  const navigate = useNavigate();  
+  const handleSuccessfulAuthentication = (data) => {
+    props.handleLogin(data)
+    navigate("/dashboard",data)
+  }
+
   return (
     <>
-      <h1>ホーム</h1>
-      <div>
-        新規登録は<Link to={`/register/`}>こちら</Link>
-      </div>
-      <div>
-        ログインは<Link to={`/login/`}>こちら</Link>
-      </div>
-      <div>
+        <div>
             <h1>Home</h1>
-
-            {/* 追加する */}
             <h2>ログイン状態: {props.loggedInStatus}</h2>
-            <Register  />
+
+            {/* 書き加え */}
+            <Register handleSuccessfulAuthentication={handleSuccessfulAuthentication} />
         </div>
     </>
   );
