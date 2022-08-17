@@ -2,33 +2,36 @@ import React, { useState } from 'react'
 import axios from 'axios'
 
 export default function Register(props) {
-    const [email, setEmail] = useState("")
-    const [password, setPassword] = useState("")
-    const [passwordConfirmation, setPasswordConfirmation] = useState("")
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const [passwordConfirmation, setPasswordConfirmation] = useState("")
 
-    const handleSubmit = (event) => {
-
-        //追加
-        axios.post("http://localhost:3001/v1/auth//?email=" + email + "&password=" + password,
-            {
-                user: {
-                    email: email,
-                    password: password,
-                    password_confirmation: passwordConfirmation
-                }
-            },
-            { withCredentials: true }
-        ).then(response => {
-            console.log("registration res", response)
-            if (response.data.status === 'success') {
-              props.handleSuccessfulAuthentication(response.data)
+  const handleSubmit = (event) => {
+  
+    axios.post(`http://localhost:3001/v1/auth/?email=${email}&password=${password}`,
+      {
+        user: 
+          {
+            email                 : email,
+            password              : password,
+            password_confirmation : passwordConfirmation
           }
-        }).catch(error => {
-            console.log("registration error", error)
-        })
-        event.preventDefault()
-
-    }
+      },
+      { 
+        withCredentials: true
+      }).then(response => {
+        // 成功した場合
+        console.log("registration res", response)
+        if (response.data.status === 'success') {
+          // ログイン処理を行う
+          props.handleSuccessfulAuthentication(response.data)
+        }
+      }).catch(error => {
+        // 失敗した場合
+        console.log("registration error", error)
+      })
+    event.preventDefault()
+  }
 
     return (
         <div>
