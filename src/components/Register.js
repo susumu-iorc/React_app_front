@@ -8,14 +8,12 @@ export default function Register(props) {
 
   const handleSubmit = (event) => {
   
-    axios.post(`http://localhost:3001/v1/auth/?email=${email}&password=${password}`,
+    axios.post(`http://localhost:3001/v1/auth`,
       {
-        user: 
-          {
-            email                 : email,
-            password              : password,
-            password_confirmation : passwordConfirmation
-          }
+
+        email     : email,
+        password  : password
+          
       },
       { 
         withCredentials: true
