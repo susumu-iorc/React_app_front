@@ -1,5 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import Register from "./Register";
+import Login from "./Login";
 
 const Home = (props) => {
   const navigate = useNavigate();  
@@ -16,6 +17,7 @@ const Home = (props) => {
 
             {/* 書き加え */}
             <Register handleSuccessfulAuthentication={handleSuccessfulAuthentication} />
+            <Login handleSuccessfulAuthentication={handleSuccessfulAuthentication} />
         </div>
     </>
   );

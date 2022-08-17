@@ -4,25 +4,21 @@ import axios from 'axios'
 export default function Login(props) {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
-  const [passwordConfirmation, setPasswordConfirmation] = useState("")
 
   const handleSubmit = (event) => {
   
-    axios.post(`http://localhost:3001/v1/auth/?email=${email}&password=${password}`,
+    axios.post("http://localhost:3001/v1/auth/sign_in",
       {
-        user: 
-          {
-            email                 : email,
-            password              : password,
-            password_confirmation : passwordConfirmation
-          }
+        email     : email,
+        password  : password
+          
       },
       { 
         withCredentials: true
       }).then(response => {
         // 成功した場合
         console.log("registration res", response)
-        if (response.data.status === 'success') {
+        if (response.data["access-token"] !== null) {
           // ログイン処理を行う
           props.handleSuccessfulAuthentication(response.data)
         }
@@ -53,15 +49,9 @@ export default function Login(props) {
                     value={password}
                     onChange={event => setPassword(event.target.value)}
                 />
-                <input
-                    type="password"
-                    name="password_confirmation"
-                    placeholder="確認用パスワード"
-                    value={passwordConfirmation}
-                    onChange={event => setPasswordConfirmation(event.target.value)}
-                />
 
-                <button type="submit">登録</button>
+
+                <button type="submit">ログイン</button>
             </form>
         </div>
     )

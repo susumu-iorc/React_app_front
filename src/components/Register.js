@@ -8,9 +8,8 @@ export default function Register(props) {
 
   const handleSubmit = (event) => {
   
-    axios.post(`http://localhost:3001/v1/auth`,
+    axios.post("http://localhost:3001/v1/auth",
       {
-
         email     : email,
         password  : password
           
