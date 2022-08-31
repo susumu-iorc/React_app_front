@@ -7,7 +7,7 @@ export default function Login(props) {
 
   const handleSubmit = (event) => {
   
-    axios.post("http://localhost:3001/v1/auth/sign_in",
+    axios.post("http://35.77.207.185/v1/auth/sign_in",
       {
         email     : email,
         password  : password
@@ -19,6 +19,9 @@ export default function Login(props) {
         // 成功した場合
         console.log("registration res", response)
         if (response.data["access-token"] !== null) {
+          console.log("access-token: ", response.headers["access-token"])
+          console.log("client: ", response.headers["client"])
+          console.log("uid: ", response.headers["uid"])
           // ログイン処理を行う
           props.handleSuccessfulAuthentication(response.data)
         }

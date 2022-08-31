@@ -14,7 +14,6 @@ const Home = (props) => {
         <div>
             <h1>Home</h1>
             <h2>ログイン状態: {props.loggedInStatus}</h2>
-
             {/* 書き加え */}
             <Register handleSuccessfulAuthentication={handleSuccessfulAuthentication} />
             <Login handleSuccessfulAuthentication={handleSuccessfulAuthentication} />
