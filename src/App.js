@@ -7,20 +7,29 @@ import Login from "./components/Login";
 import Dashboard from "./components/Dashboard";
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
+import Cookies from 'universal-cookie';
 import * as CONSTANTS from "./constants.js";
 
 const App = () => {
-
+  const cookies = new Cookies();
   const [loggedInStatus, setLoggedInStatus] = useState("未ログイン")
   const [user, setUser] = useState({})
   const [tokens, setTokens] = useState({"access-token":"", "client":"", "uid":""})
 
+  function headerTokens( token, client, uid){
+    return {"access-token": token, "client": client, "uid": uid}
+  }
   const handleLogin = (data) => {
     setLoggedInStatus("ログインなう")
     setUser(data.user)
-    let tempTokens = {"access-token":data["access-token"], "client":data["client"], "uid":data["uid"]}
-    setTokens(tempTokens)
-    console.log("処理が変わりまして　→　へっだーは", tokens)
+    cookies.set("access-token", data["access-token"])
+    cookies.set("client",data["client"])
+    cookies.set("uid", data["uid"])
+    let tempTokens = headerTokens( data["access-token"], data["client"], data["uid"])
+    setTokens(( data["access-token"], data["client"], data["uid"]))
+    console.log("処理が変わりまして　→　ヘッダーのトークン", data["access-token"])
+    console.log("処理が変わりまして　→　クッキーのトークン", cookies.get("access-token"))
+
   }
 
 // 追加
@@ -30,7 +39,7 @@ useEffect(() => {
 
 // 追加
 const checkLoginStatus = () => {
-  axios.get(CONSTANTS.API_USERBASE_GET_FULL_PATH, { withCredentials: true,headers: tokens})
+  axios.get(CONSTANTS.API_USERBASE_GET_FULL_PATH, { withCredentials: true,headers: {}})
     .then(response => {
     console.log("ログイン状況", response)
   }).catch(error => {
