@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import axios from 'axios'
+import * as CONSTANTS from "../constants.js";
 
 export default function Register(props) {
   const [email, setEmail] = useState("")
@@ -8,7 +9,7 @@ export default function Register(props) {
 
   const handleSubmit = (event) => {
   
-    axios.post("http://localhost:3001/v1/auth",
+    axios.post( CONSTANTS.API_SIGNUP_FULL_PATH,
       {
         email     : email,
         password  : password

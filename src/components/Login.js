@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import axios from 'axios'
+import * as CONSTANTS from "../constants.js";
 
 export default function Login(props) {
   const [email, setEmail] = useState("")
@@ -7,7 +8,7 @@ export default function Login(props) {
 
   const handleSubmit = (event) => {
   
-    axios.post("http://35.77.207.185/v1/auth/sign_in",
+    axios.post( CONSTANTS.API_SIGNIN_FULL_PATH,
       {
         email     : email,
         password  : password
@@ -19,11 +20,10 @@ export default function Login(props) {
         // 成功した場合
         console.log("registration res", response)
         if (response.data["access-token"] !== null) {
-          console.log("access-token: ", response.headers["access-token"])
-          console.log("client: ", response.headers["client"])
-          console.log("uid: ", response.headers["uid"])
+
+          //console.log("へっだー: ", response.headers)
           // ログイン処理を行う
-          props.handleSuccessfulAuthentication(response.data)
+          props.handleSuccessfulAuthentication(response.headers)
         }
       }).catch(error => {
         // 失敗した場合
