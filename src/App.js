@@ -9,49 +9,49 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import Cookies from 'universal-cookie';
 import * as CONSTANTS from "./constants.js";
+import makeHeaderToken from "./utility/makeHeaderToken";
 
 const App = () => {
   const cookies = new Cookies();
-  const [loggedInStatus, setLoggedInStatus] = useState("未ログイン")
+  const [loggedInStatus, setLoggedInStatus] = useState(false)
   const [user, setUser] = useState({})
-  const [tokens, setTokens] = useState({"access-token":"", "client":"", "uid":""})
 
-  function headerTokens( token, client, uid){
-    return {"access-token": token, "client": client, "uid": uid}
-  }
+
   const handleLogin = (data) => {
-    setLoggedInStatus("ログインなう")
-    setUser(data.user)
     cookies.set("access-token", data["access-token"])
     cookies.set("client",data["client"])
     cookies.set("uid", data["uid"])
-    let tempTokens = headerTokens( data["access-token"], data["client"], data["uid"])
-    setTokens(( data["access-token"], data["client"], data["uid"]))
-    console.log("処理が変わりまして　→　ヘッダーのトークン", data["access-token"])
-    console.log("処理が変わりまして　→　クッキーのトークン", cookies.get("access-token"))
-
+    checkLogin()
+  }
+  const handleLogout = (data) => {
+    cookies.remove("access-token", data["access-token"])
+    cookies.remove("client",data["client"])
+    cookies.remove("uid", data["uid"])
+    checkLogin()
   }
 
 // 追加
 useEffect(() => {
-  checkLoginStatus()
+  console.log(makeHeaderToken)
+  checkLogin()
 })
 
 // 追加
-const checkLoginStatus = () => {
-  axios.get(CONSTANTS.API_USERBASE_GET_FULL_PATH, { withCredentials: true,headers: {}})
+const checkLogin = () => {
+  axios.get(CONSTANTS.API_USERBASE_GET_FULL_PATH, { withCredentials: true,headers: makeHeaderToken})
     .then(response => {
-    console.log("ログイン状況", response)
+    setLoggedInStatus(true)
   }).catch(error => {
-    console.log("ログインエラー", error)
+    setLoggedInStatus(false)
   })
+  console.log("ログイン処理完了 =>" , loggedInStatus)
 }
 
 
   return (
     <BrowserRouter>
       <Routes>
-        <Route path={'/'} element={<Home loggedInStatus={loggedInStatus} handleLogin={handleLogin}/>} />
+        <Route path={'/'} element={<Home loggedInStatus={loggedInStatus} handleLogin={handleLogin} handleLogout={handleLogout}  />} />
         <Route path={'/register/'} element={<Register />} />
         <Route path={'/login/'} element={<Login loggedInStatus={loggedInStatus} handleLogin={handleLogin}/>} />
         <Route path={"/dashboard"} element={<Dashboard loggedInStatus={loggedInStatus} handleLogin={handleLogin}/>} />

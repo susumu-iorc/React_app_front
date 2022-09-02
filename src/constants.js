@@ -9,7 +9,7 @@ export const API_USERBASE_GET_PATH      = API_VERSION_PATH + "/userbase/get"
 export const API_USERBASE_UPDATE_PATH   = API_VERSION_PATH + "/usaerbase/update"
 export const API_SHOPLIST_GET_PATH      = API_VERSION_PATH + "/shoplist/get"
 export const API_MEMO_GET_PATH          = API_VERSION_PATH + "/memo/get"
-export const API_MEMO_UPDATE_PATH       = API_VERSION_PATH + "memo/update"
+export const API_MEMO_UPDATE_PATH       = API_VERSION_PATH + "/memo/update"
 
 export const API_SIGNUP_FULL_PATH           = API_URL + API_SIGNUP_PATH
 export const API_SIGNIN_FULL_PATH           = API_URL + API_SIGNIN_PATH
