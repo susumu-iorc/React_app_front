@@ -9,8 +9,7 @@ export default function Logout(props) {
 
   const handleLogoutBtn = (event) => {
     // delete
-    console.log("ログアウト処理開始")
-    console.log("トークン→",makeHeaderToken)
+
     axios.delete( CONSTANTS.API_SIGNOUT_FULL_PATH,{ withCredentials: true,headers: makeHeaderToken(props.apiUserTokens)})
         .then(response => {
         // 成功した場合
@@ -27,7 +26,7 @@ export default function Logout(props) {
       })
     event.preventDefault()
 
-    console.log("ログアウト処理終了")
+
   }
 
     return (
