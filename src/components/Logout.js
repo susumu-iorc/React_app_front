@@ -11,7 +11,7 @@ export default function Logout(props) {
     // delete
     console.log("ログアウト処理開始")
     console.log("トークン→",makeHeaderToken)
-    axios.delete( CONSTANTS.API_SIGNOUT_FULL_PATH,{ withCredentials: true,headers: makeHeaderToken})
+    axios.delete( CONSTANTS.API_SIGNOUT_FULL_PATH,{ withCredentials: true,headers: makeHeaderToken(props.apiUserTokens)})
         .then(response => {
         // 成功した場合
         console.log("registration res", response)

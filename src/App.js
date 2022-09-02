@@ -13,32 +13,36 @@ import makeHeaderToken from "./utility/makeHeaderToken";
 
 const App = () => {
   const cookies = new Cookies();
-  const [loggedInStatus, setLoggedInStatus] = useState(false)
+  const [apiUserTokens, setApiUserTokens]   = useState({token: cookies.get("access-token"), client: cookies.get("client"), uid: cookies.get("uid")})
+
+  const [loggedInStatus, setLoggedInStatus] = useState(null)
   const [user, setUser] = useState({})
 
-
+  const updateApiUserTokens = (__token, __client , __uid) => {
+    cookies.set("access-token", __token,)
+    cookies.set("client", __client)
+    cookies.set("uid", __uid)
+    setApiUserTokens({token: __token, client: __client, uid: __uid})
+  }
+  
   const handleLogin = (data) => {
-    cookies.set("access-token", data["access-token"])
-    cookies.set("client",data["client"])
-    cookies.set("uid", data["uid"])
+    updateApiUserTokens(data["access-token"], data["client"], data["uid"])
     checkLogin()
   }
   const handleLogout = (data) => {
-    cookies.remove("access-token", data["access-token"])
-    cookies.remove("client",data["client"])
-    cookies.remove("uid", data["uid"])
+    updateApiUserTokens("", "", "")
     checkLogin()
   }
 
 // 追加
 useEffect(() => {
-  console.log(makeHeaderToken)
+  console.log(makeHeaderToken(apiUserTokens))
   checkLogin()
 })
 
 // 追加
 const checkLogin = () => {
-  axios.get(CONSTANTS.API_USERBASE_GET_FULL_PATH, { withCredentials: true,headers: makeHeaderToken})
+  axios.get(CONSTANTS.API_USERBASE_GET_FULL_PATH, { withCredentials: true,headers: makeHeaderToken(apiUserTokens)})
     .then(response => {
     setLoggedInStatus(true)
   }).catch(error => {
@@ -51,7 +55,7 @@ const checkLogin = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path={'/'} element={<Home loggedInStatus={loggedInStatus} handleLogin={handleLogin} handleLogout={handleLogout}  />} />
+        <Route path={'/'} element={<Home loggedInStatus={loggedInStatus} handleLogin={handleLogin} handleLogout={handleLogout} apiUserTokens={apiUserTokens} />} />
         <Route path={'/register/'} element={<Register />} />
         <Route path={'/login/'} element={<Login loggedInStatus={loggedInStatus} handleLogin={handleLogin}/>} />
         <Route path={"/dashboard"} element={<Dashboard loggedInStatus={loggedInStatus} handleLogin={handleLogin}/>} />

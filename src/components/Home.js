@@ -18,7 +18,7 @@ const Home = (props) => {
             {/* 書き加え */}
             <Register handleSuccessfulAuthentication={handleSuccessfulAuthentication} />
             <Login handleSuccessfulAuthentication={handleSuccessfulAuthentication} />
-            <Logout handleSuccessfulAuthentication={handleSuccessfulAuthentication} />
+            <Logout handleSuccessfulAuthentication={handleSuccessfulAuthentication} apiUserTokens={props.apiUserTokens}/>
             <h2>const出力</h2>
             ROOT_PATH = {a.API_URL}<br />
             LOGIN_PATH = {a.API_VERSION}<br />
