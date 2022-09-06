@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./components/Home";
 import Header from "./components/Header";
+import Base from "./components/Base";
 import Register from "./components/Register";
 import Login from "./components/Login";
 import Dashboard from "./components/Dashboard";
@@ -11,6 +12,7 @@ import * as CONSTANTS from "./constants.js";
 import makeHeaderToken from "./utility/makeHeaderToken";
 
 const App = () => {
+
   // クッキーを利用する
   const cookies = new Cookies();
 
@@ -63,6 +65,7 @@ const App = () => {
         <Route path={'/'} element={<Home loggedInStatus={loggedInStatus} handleLogin={handleLogin} handleLogout={handleLogout} apiUserTokens={apiUserTokens} />} />
         <Route path={'/register/'} element={<Register />} />
         <Route path={'/login/'} element={<Login loggedInStatus={loggedInStatus} handleLogin={handleLogin} apiUserTokens={apiUserTokens}/>} />
+        <Route path={"/base"} element={<Base loggedInStatus={loggedInStatus} />} />
         <Route path={"/dashboard"} element={<Dashboard loggedInStatus={loggedInStatus} handleLogin={handleLogin}/>} />
       </Routes>
     </BrowserRouter>
