@@ -44,6 +44,7 @@ const App = () => {
 
   //　ログインチェック
   const checkLogin = () => {
+    console.log("logincheck token->",makeHeaderToken(apiUserTokens))
     axios.get(CONSTANTS.API_USERBASE_GET_FULL_PATH, { withCredentials: true,headers: makeHeaderToken(apiUserTokens)})
       .then(response => {
         setLoggedInStatus(true)
@@ -65,7 +66,7 @@ const App = () => {
         <Route path={'/'} element={<Home loggedInStatus={loggedInStatus} handleLogin={handleLogin} handleLogout={handleLogout} apiUserTokens={apiUserTokens} />} />
         <Route path={'/register/'} element={<Register />} />
         <Route path={'/login/'} element={<Login loggedInStatus={loggedInStatus} handleLogin={handleLogin} apiUserTokens={apiUserTokens}/>} />
-        <Route path={"/base"} element={<Base loggedInStatus={loggedInStatus} />} />
+        <Route path={"/base"} element={<Base loggedInStatus={loggedInStatus} apiUserTokens={apiUserTokens}/>} />
         <Route path={"/dashboard"} element={<Dashboard loggedInStatus={loggedInStatus} handleLogin={handleLogin}/>} />
       </Routes>
     </BrowserRouter>

@@ -31,7 +31,7 @@ export default function Logout(props) {
 
     return (
         <div>
-           <p>新規登録</p>
+           <p>ログアウトを行う</p>
 
            {/* onSubmit、onChangeイベントを追加 */}
             <form onSubmit={handleLogoutBtn}>
