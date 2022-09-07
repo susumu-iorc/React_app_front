@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./components/Home";
-import Header from "./components/Header";
+import Shoppage from "./components/Shoppage";
 import Base from "./components/Base";
 import Register from "./components/Register";
 import Shoplist from "./components/Shoplist";
@@ -105,6 +105,7 @@ const App = () => {
         <Route path={"/base"} element={<Base loggedInStatus={loggedInStatus} apiUserTokens={apiUserTokens} userBase={userBase} setUserBase={setUserBase} />} />
         <Route path={"/dashboard"} element={<Dashboard loggedInStatus={loggedInStatus} handleLogin={handleLogin}/>} />
         <Route path={"/shoplist"} element={<Shoplist loggedInStatus={loggedInStatus} handleLogin={handleLogin} shopList={shopList} />} />
+        <Route path={"/shop/:placeId"} element={<Shoppage  apiUserTokens={apiUserTokens}/>} />
       </Routes>
     </BrowserRouter>
   )
