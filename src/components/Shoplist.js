@@ -1,17 +1,19 @@
 import React, { useState } from 'react'
-import axios from 'axios'
-import * as CONSTANTS from "../constants.js";
-
-const Output = ({ tasks }) => {
-  console.log("tasks->",tasks)
-  if(tasks==null){return(<div><p>読込中</p></div>);}
-  const list = tasks.map(task => {
+import { Link } from "react-router-dom";
+const ShopCard = ({ shops }) => {
+  if(shops==null){return(<div><p>読込中</p></div>);}
+  const list = shops.map(shop => {
+    let shopLink = "/shop/" + shop["place-id"]
     return (
-      <h3>{task["shop-name"]}</h3>
-
+      <div>
+        <Link to= {shopLink}>
+        <h3>{shop["shop-name"]}</h3>
+        <p>{shop["shop-address"]}</p>
+        </Link>
+      </div>
     );
   });
-  return <ul>{list}</ul>;
+  return list;
 };
 
 
@@ -24,7 +26,7 @@ export default function Shoplist(props) {
         <div>
            <p>お店一覧</p>
 
-           <Output tasks={shopName} />
+           <ShopCard shops={shopName} />
 
         </div>
     )
