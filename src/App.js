@@ -21,6 +21,12 @@ const App = () => {
  
   // ログイン状況の宣言
   const [loggedInStatus, setLoggedInStatus] = useState(null);
+  const [reloadTriggerState, setReloadTriggerState] = useState(true)
+
+  const [userBase, setUserBase] = useState({userId:null, userPostCode:null, userPref:null, userCity:null, userArea:null, userLat:null, userLng:null})
+  // データ読み込みトリガー
+  const reloadEnable =() => (setReloadTriggerState(true))
+  const reloadDisable =() => (setReloadTriggerState(false))
 
   // apiのトークンを管理する
   const updateApiUserTokens = (__token, __client , __uid) => {
@@ -39,34 +45,48 @@ const App = () => {
   // ログアウト時の処理
   const handleLogout = (data) => {
     updateApiUserTokens("", "", "");
-    checkLogin();
+    setLoggedInStatus(false)
+    setUserBase({userId:"", userPostCode:"", userPref:"", userCity:"", userArea:"", userLat:"", userLng:""})
   }
 
   //　ログインチェック
   const checkLogin = () => {
-    console.log("logincheck token->",makeHeaderToken(apiUserTokens))
     axios.get(CONSTANTS.API_USERBASE_GET_FULL_PATH, { withCredentials: true,headers: makeHeaderToken(apiUserTokens)})
       .then(response => {
-        setLoggedInStatus(true)
+        setLoggedInStatus(true);
+        setUserBase({      userId: response.data["data"]["uid"],
+                     userPostCode: response.data["data"]["user-post_code"],
+                         userPref: response.data["data"]["user-pref"],
+                         userCity: response.data["data"]["user-city"],
+                         userArea: response.data["data"]["user-area"],
+                          userLat: response.data["data"]["user-lat"],
+                          userLng: response.data["data"]["user-lng"]
+                     })
+
       }
       ).catch(error => {
         setLoggedInStatus(false)
+
     });
   };
 
   // 画面開いたときに回す処理
-  useEffect(() => {
-   checkLogin(); //ログインしているかの確認
-  });
+    useEffect(() => {
+      if (reloadTriggerState){
+        reloadDisable()
+        checkLogin(); //ログインしているかの確認
+        reloadEnable()
+      }
+    });
 
 
   return (
     <BrowserRouter>
       <Routes>
-        <Route path={'/'} element={<Home loggedInStatus={loggedInStatus} handleLogin={handleLogin} handleLogout={handleLogout} apiUserTokens={apiUserTokens} />} />
+        <Route path={'/'} element={<Home loggedInStatus={loggedInStatus} handleLogin={handleLogin} handleLogout={handleLogout} apiUserTokens={apiUserTokens} reloadEnable={reloadEnable} reloadDisable={reloadDisable} />} />
         <Route path={'/register/'} element={<Register />} />
         <Route path={'/login/'} element={<Login loggedInStatus={loggedInStatus} handleLogin={handleLogin} apiUserTokens={apiUserTokens}/>} />
-        <Route path={"/base"} element={<Base loggedInStatus={loggedInStatus} apiUserTokens={apiUserTokens}/>} />
+        <Route path={"/base"} element={<Base loggedInStatus={loggedInStatus} apiUserTokens={apiUserTokens} userBase={userBase} setUserBase={setUserBase} />} />
         <Route path={"/dashboard"} element={<Dashboard loggedInStatus={loggedInStatus} handleLogin={handleLogin}/>} />
       </Routes>
     </BrowserRouter>

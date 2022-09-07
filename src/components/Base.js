@@ -12,18 +12,16 @@ const Base = (props) => {
     //navigate("/")
 	//};
 //});
-const [userPostCode, setUserPostCode] = useState("")
-const [userPref, setUserPref] = useState("")
-const [userCity, setUserCity] = useState("")
-const [userArea, setUserArea] = useState("")
+
+
 
 const handleSubmit = (event) => {
 	axios.post( CONSTANTS.API_USERBASE_UPDATE_FULL_PATH,
 		{
-			"user-post-code"     : userPostCode,
-			"user-pref"     : userPref,
-			"user-city"     : userCity,
-			"user-area"     : userArea
+			"user-post-code"     : props.userBase["userPostCode"],
+			"user-pref"     : props.userBase["userPref"],
+			"user-city"     : props.userBase["userCity"],
+			"user-area"     : props.userBase["userArea"]
 				
 		},
 		{ withCredentials: true,headers: makeHeaderToken(props.apiUserTokens)}
@@ -51,30 +49,29 @@ const handleSubmit = (event) => {
                     type="text"
                     name="userPostCode"
                     placeholder="郵便番号"
-                    value={userPostCode}
-                    onChange={event => setUserPostCode(event.target.value)}
+                    value={props.userBase["userPostCode"]}
+                    onChange={event => props.setUserBase((prevState) => ({ ...prevState, userPostCode: event.target.value}))}
                 />
                 <input
                     type="text"
                     name="userPref"
                     placeholder="都道府県"
-                    value={userPref}
-                    onChange={event => setUserPref(event.target.value)}
+                    value={props.userBase["userPref"]}
+                    onChange={event => props.setUserBase((prevState) => ({ ...prevState, userPref: event.target.value}))}
                 />
 								<input
                     type="text"
                     name="userCity"
                     placeholder="市区町村"
-                    value={userCity}
-										defaultValue="test"
-                    onChange={event => setUserCity(event.target.value)}
+                    value={props.userBase["userCity"]}
+                    onChange={event => props.setUserBase((prevState) => ({ ...prevState, userCity:event.target.value}))}
                 />
 								<input
                     type="text"
                     name="userArea"
                     placeholder="町域番地"
-                    value={userArea}
-                    onChange={event => setUserArea(event.target.value)}
+                    value={props.userBase["userArea"]}
+                    onChange={event => props.setUserBase((prevState) => ({ ...prevState, userArea:event.target.value}))}
                 />
 
 

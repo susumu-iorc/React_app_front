@@ -9,7 +9,11 @@ const Home = (props) => {
     props.handleLogin(data)
     navigate("/dashboard",data)
   }
-
+  const handleLogoutSuccessfulAuthentication = (data) => {
+    props. handleLogout(data)
+    navigate("/dashboard",data)
+  }
+ 
   return (
     <>
         <div>
@@ -18,7 +22,7 @@ const Home = (props) => {
             {/* 書き加え */}
             <Register handleSuccessfulAuthentication={handleSuccessfulAuthentication} />
             <Login handleSuccessfulAuthentication={handleSuccessfulAuthentication} />
-            <Logout handleSuccessfulAuthentication={handleSuccessfulAuthentication} apiUserTokens={props.apiUserTokens}/>
+            <Logout handleLogout={props.handleLogout} handleLogoutSuccessfulAuthentication={handleLogoutSuccessfulAuthentication} apiUserTokens={props.apiUserTokens} reloadEnable={props.reloadEnable} reloadDisable={props.reloadDisable}/>
             <Link to="/base">BASEへ</Link>
             <h2>const出力</h2>
             ROOT_PATH = {a.API_URL}<br />

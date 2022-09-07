@@ -10,6 +10,7 @@ export default function Logout(props) {
   const handleLogoutBtn = (event) => {
     // delete
 
+    props.reloadDisable()
     axios.delete( CONSTANTS.API_SIGNOUT_FULL_PATH,{ withCredentials: true,headers: makeHeaderToken(props.apiUserTokens)})
         .then(response => {
         // 成功した場合
@@ -18,7 +19,7 @@ export default function Logout(props) {
 
           //console.log("へっだー: ", response.headers)
           // ログアウト処理を行う
-          props.handleSuccessfulAuthentication(response.headers)
+          props.handleLogoutSuccessfulAuthentication(response.headers)
         }
       }).catch(error => {
         // 失敗した場合
@@ -26,6 +27,7 @@ export default function Logout(props) {
       })
     event.preventDefault()
 
+    props.reloadEnable()
 
   }
 
