@@ -65,6 +65,8 @@ const App = () => {
                           userLng: response.data["data"]["user-lng"]
                      })
 
+        getShopList();//ShopListの取得
+
       }
       ).catch(error => {
         setLoggedInStatus(false)
@@ -76,7 +78,6 @@ const App = () => {
   const getShopList = () =>{
     axios.get(CONSTANTS.API_SHOPLIST_GET_FULL_PATH, { withCredentials: true,headers: makeHeaderToken(apiUserTokens)})
       .then(response => {
-        setLoggedInStatus(true);
         setShopList(response.data["data"])
         console.log(shopList)
       }
@@ -86,14 +87,13 @@ const App = () => {
     });
   }
   // 画面開いたときに回す処理
-    useEffect(() => {
-      if (reloadTriggerState){
-        reloadDisable()
-        checkLogin(); //ログインしているかの確認
-        getShopList();//ShopListの取得
-        reloadEnable()
-      }
-    });
+  useEffect(() => {
+    checkLogin();
+  },[]);
+
+  // ログインしたときに回す処理
+  useEffect(() => {
+  },[]);
 
 
   return (
