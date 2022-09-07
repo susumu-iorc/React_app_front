@@ -23,7 +23,8 @@ const Home = (props) => {
             <Register handleSuccessfulAuthentication={handleSuccessfulAuthentication} />
             <Login handleSuccessfulAuthentication={handleSuccessfulAuthentication} />
             <Logout handleLogout={props.handleLogout} handleLogoutSuccessfulAuthentication={handleLogoutSuccessfulAuthentication} apiUserTokens={props.apiUserTokens} reloadEnable={props.reloadEnable} reloadDisable={props.reloadDisable}/>
-            <Link to="/base">BASEへ</Link>
+            <Link to="/base">BASEへ</Link><br />
+            <Link to="/shoplist">SHOPLISTへ</Link>
             <h2>const出力</h2>
             ROOT_PATH = {a.API_URL}<br />
             LOGIN_PATH = {a.API_VERSION}<br />

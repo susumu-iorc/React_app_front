@@ -3,6 +3,7 @@ import Home from "./components/Home";
 import Header from "./components/Header";
 import Base from "./components/Base";
 import Register from "./components/Register";
+import Shoplist from "./components/Shoplist";
 import Login from "./components/Login";
 import Dashboard from "./components/Dashboard";
 import React, { useState, useEffect } from 'react';
@@ -22,6 +23,7 @@ const App = () => {
   // ログイン状況の宣言
   const [loggedInStatus, setLoggedInStatus] = useState(null);
   const [reloadTriggerState, setReloadTriggerState] = useState(true)
+  const [shopList, setShopList] = useState({})
 
   const [userBase, setUserBase] = useState({userId:null, userPostCode:null, userPref:null, userCity:null, userArea:null, userLat:null, userLng:null})
   // データ読み込みトリガー
@@ -70,11 +72,25 @@ const App = () => {
     });
   };
 
+  // ShopListの取得
+  const getShopList = () =>{
+    axios.get(CONSTANTS.API_SHOPLIST_GET_FULL_PATH, { withCredentials: true,headers: makeHeaderToken(apiUserTokens)})
+      .then(response => {
+        setLoggedInStatus(true);
+        setShopList(response.data["data"])
+        console.log(shopList)
+      }
+      ).catch(error => {
+        setLoggedInStatus(false)
+
+    });
+  }
   // 画面開いたときに回す処理
     useEffect(() => {
       if (reloadTriggerState){
         reloadDisable()
         checkLogin(); //ログインしているかの確認
+        getShopList();//ShopListの取得
         reloadEnable()
       }
     });
@@ -88,6 +104,7 @@ const App = () => {
         <Route path={'/login/'} element={<Login loggedInStatus={loggedInStatus} handleLogin={handleLogin} apiUserTokens={apiUserTokens}/>} />
         <Route path={"/base"} element={<Base loggedInStatus={loggedInStatus} apiUserTokens={apiUserTokens} userBase={userBase} setUserBase={setUserBase} />} />
         <Route path={"/dashboard"} element={<Dashboard loggedInStatus={loggedInStatus} handleLogin={handleLogin}/>} />
+        <Route path={"/shoplist"} element={<Shoplist loggedInStatus={loggedInStatus} handleLogin={handleLogin} shopList={shopList} />} />
       </Routes>
     </BrowserRouter>
   )
