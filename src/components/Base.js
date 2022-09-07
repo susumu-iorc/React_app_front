@@ -33,7 +33,7 @@ const handleSubmit = (event) => {
 			if (response.data["access-token"] !== null) {
 
 				console.log("へっだー: ", response.headers)
-
+				navigate("/dashboard")
 			}
 		}).catch(error => {
 			// 失敗した場合
@@ -66,6 +66,7 @@ const handleSubmit = (event) => {
                     name="userCity"
                     placeholder="市区町村"
                     value={userCity}
+										defaultValue="test"
                     onChange={event => setUserCity(event.target.value)}
                 />
 								<input

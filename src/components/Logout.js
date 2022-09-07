@@ -17,7 +17,7 @@ export default function Logout(props) {
         if (response.data["access-token"] !== null) {
 
           //console.log("へっだー: ", response.headers)
-          // ログイン処理を行う
+          // ログアウト処理を行う
           props.handleSuccessfulAuthentication(response.headers)
         }
       }).catch(error => {
