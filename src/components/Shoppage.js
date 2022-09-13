@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom'
 import axios from 'axios';
 import * as CONSTANTS from "../constants.js";
 import makeHeaderToken from "../utility/makeHeaderToken";
+import ViewMap from "./GoogleMap.js"
 
 
 
@@ -87,7 +88,8 @@ export default function Shoppage(props){
   
         
   return (
-    <div>
+    <div> 
+      <ViewMap userBase={props.userBase}/>
       店名: {memo["shop-name"]}<br />
       住所: {memo["shop-address"]}<br />
       お気に入り: {memo["favorite"]}<br />

@@ -61,8 +61,8 @@ const App = () => {
                          userPref: response.data["data"]["user-pref"],
                          userCity: response.data["data"]["user-city"],
                          userArea: response.data["data"]["user-area"],
-                          userLat: response.data["data"]["user-lat"],
-                          userLng: response.data["data"]["user-lng"]
+                          userLat: Number(response.data["data"]["user-lat"]),
+                          userLng: Number(response.data["data"]["user-lng"])
                      })
 
         getShopList();//ShopListの取得
@@ -104,7 +104,7 @@ const App = () => {
         <Route path={'/login/'} element={<Login loggedInStatus={loggedInStatus} handleLogin={handleLogin} apiUserTokens={apiUserTokens}/>} />
         <Route path={"/base"} element={<Base loggedInStatus={loggedInStatus} apiUserTokens={apiUserTokens} userBase={userBase} setUserBase={setUserBase} />} />
         <Route path={"/dashboard"} element={<Dashboard loggedInStatus={loggedInStatus} handleLogin={handleLogin}/>} />
-        <Route path={"/shoplist"} element={<Shoplist loggedInStatus={loggedInStatus} handleLogin={handleLogin} shopList={shopList} />} />
+        <Route path={"/shoplist"} element={<Shoplist loggedInStatus={loggedInStatus} userBase ={userBase} handleLogin={handleLogin} shopList={shopList} />} />
         <Route path={"/shop/:placeId"} element={<Shoppage  apiUserTokens={apiUserTokens}/>} />
       </Routes>
     </BrowserRouter>
