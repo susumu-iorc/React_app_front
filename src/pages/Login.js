@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 import * as CONSTANTS from "../constants.js";
-import {SubmitButton} from "../components/parts/Button"
 import {LoginFormSet} from "../components/LoginFormSet"
 
 export default function Login(props) {
@@ -34,13 +33,12 @@ export default function Login(props) {
     event.preventDefault()
   }
 
-    return (
-          <LoginFormSet emailValue={email}
-                        emailOnChange={event => setEmail(event.target.value)}
-                        passwordValue={password}
-                        passwordOnChange={event => setPassword(event.target.value)}
-                        onClickTo={handleSubmit}
-                        btnTxt={"ログイン"}
-                        />
-    )
+  return (
+    <LoginFormSet emailValue={email}
+                  emailOnChange={event => setEmail(event.target.value)}
+                  passwordValue={password}
+                  passwordOnChange={event => setPassword(event.target.value)}
+                  onClickTo={handleSubmit}
+                 />
+  )
 }

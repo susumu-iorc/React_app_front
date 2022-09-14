@@ -3,6 +3,7 @@ import Signin from "./Signin"
 import Login from "./Login";
 import Logout from "./Logout";
 import * as a from "../constants.js";
+import { LinkButton } from "../components/parts/Button";
 const Home = (props) => {
   const navigate = useNavigate();  
   const handleSuccessfulAuthentication = (data) => {
@@ -25,7 +26,7 @@ const Home = (props) => {
             <Logout handleLogout={props.handleLogout} handleLogoutSuccessfulAuthentication={handleLogoutSuccessfulAuthentication} apiUserTokens={props.apiUserTokens} reloadEnable={props.reloadEnable} reloadDisable={props.reloadDisable}/>
             <Link to="/base">BASEへ</Link><br />
             <Link to="/shoplist">SHOPLISTへ</Link>
-
+            <LinkButton to="/shoplist" txt="SHOPLISTへ" />
         </div>
     </>
   );
