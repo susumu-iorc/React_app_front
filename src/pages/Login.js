@@ -35,9 +35,6 @@ export default function Login(props) {
   }
 
     return (
-        <div>
-          <p>フォームの試験</p>
-          ここに→{email}表示
           <LoginFormSet emailLabel={"メールアドレス"}
                         emailType={"email"}
                         emailValue={email}
@@ -53,9 +50,5 @@ export default function Login(props) {
                         onClickTo={handleSubmit}
                         btnTxt={"ログイン"}
                         />
-           <p>新規登録</p>
-
-
-        </div>
     )
 }
