@@ -12,14 +12,14 @@ import { Link } from 'react-router-dom';
 export const SubmitButton = (props) => {
 	return(
 		<>
-			<Button colorScheme={'blue'} onClick={props.onClickTo} mt={2}>{props.txt}</Button><br />
+			<Button w={"6em"} colorScheme={'blue'} onClick={props.onClickTo} mt={2}>{props.txt}</Button><br />
 		</>
 	)
 };
 
 /* リンクボタン
 /* <SubmitButton
-/*        linkTo={ 移動先 }
+/*        to={ 移動先 }
 /*        txt=" ボタンの文字 "
 /*        />
 /*
@@ -29,8 +29,9 @@ export const LinkButton = (props) => {
 	return(
 		<>
 			<Link to={props.to} >
-				<Button colorScheme={'red'} rounded="100" margin={1} >{props.txt}</Button>
+				<Button w={"10em"} border={"1px"} borderColor={"black"}  colorScheme={"gray"} rounded="100" margin={1} >{props.txt}</Button>
 			</Link>
+			<br></br>
 		</>
 	)
 };
