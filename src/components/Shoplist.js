@@ -25,7 +25,7 @@ export default function Shoplist(props) {
 
     return (
         <div>
-          <ViewMap userBase={props.userBase}/>
+        <Link to="/">ホームへ</Link><br />
            <p>お店一覧</p>
 
            <ShopCard shops={shopName} />

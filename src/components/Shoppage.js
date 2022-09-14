@@ -4,6 +4,7 @@ import axios from 'axios';
 import * as CONSTANTS from "../constants.js";
 import makeHeaderToken from "../utility/makeHeaderToken";
 import ViewMap from "./GoogleMap.js"
+import { Link } from "react-router-dom";
 
 
 
@@ -13,7 +14,7 @@ export default function Shoppage(props){
     const [ edit, setEdit] = useState(false)
     const { placeId } = useParams();
 
-    const viewEditForm = "オフです！！"
+    const viewEditForm = ""
     const getMemo = (pid, apiUserTokens) => {
         axios.get(CONSTANTS.API_MEMO_GET_FULL_PATH + pid, {withCredentials: true,headers: makeHeaderToken(apiUserTokens)})
           .then(response => {
@@ -89,7 +90,7 @@ export default function Shoppage(props){
         
   return (
     <div> 
-      <ViewMap userBase={props.userBase}/>
+      <Link to="/shoplist">ショップリストへ</Link><br />
       店名: {memo["shop-name"]}<br />
       住所: {memo["shop-address"]}<br />
       お気に入り: {memo["favorite"]}<br />
@@ -101,7 +102,7 @@ export default function Shoppage(props){
       <button
        onClick={handleEditButton}
        >
-        botann
+        編集
       </button><br />
       {viewEditForm}
       <form onSubmit={handleMemoSave}>
@@ -109,12 +110,14 @@ export default function Shoppage(props){
                     name="memo"
                     placeholder="メモを入力"
                     value={memo["memo"]}
+                    cols="40"
+                    rows="20"
                     onChange={event => setMemo((prev) => ({ ...prev, memo: event.target.value}))}
                 />
+                <br />
 
 
-
-                <button type="submit">ログイン</button>
+                <button type="submit">更新</button>
                 </form>
 
     </div>
