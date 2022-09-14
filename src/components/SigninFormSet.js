@@ -1,20 +1,13 @@
 /* ログインフォームを組み立てるコンポーネント
 /* <SigninFormSet
-/*                emailLabel={"メールアドレス"}
-/*                emailType={"email"}
 /*                emailValue={email}
-/*                emailName={"email"}
-/*                emailPlaceholder={"xxxx@example"}
 /*                emailOnChange={event => setEmail(event.target.value)}
-/*                passwordLabel={"パスワード"}
-/*                passwordType={"password"}
-/*                passwordName={"password"}
 /*                passwordValue={password}
-/*                passwordPlaceholder={"**********"}
 /*                passwordOnChange={event => setPassword(event.target.value)}
+/*                passwordConfirmationValue={passwordConfirmation}
+/*                passwordConfirmationOnChange={event => setPasswordConfirmation(event.target.value)}
 /*                onClickTo={handleSubmit}
-/*                btnTxt={"ログイン"}
-/*                />
+/*               />
 /*
 /**/
 

@@ -1,19 +1,10 @@
 /* ログインフォームを組み立てるコンポーネント
 /* <LoginFormSet
-/*                emailLabel={"メールアドレス"}
-/*                emailType={"email"}
 /*                emailValue={email}
-/*                emailName={"email"}
-/*                emailPlaceholder={"xxxx@example"}
 /*                emailOnChange={event => setEmail(event.target.value)}
-/*                passwordLabel={"パスワード"}
-/*                passwordType={"password"}
-/*                passwordName={"password"}
 /*                passwordValue={password}
-/*                passwordPlaceholder={"**********"}
 /*                passwordOnChange={event => setPassword(event.target.value)}
 /*                onClickTo={handleSubmit}
-/*                btnTxt={"ログイン"}
 /*                />
 /*
 /**/
@@ -26,14 +17,14 @@ import {SubmitButton} from "./parts/Button"
 export const LoginFormSet = (props) => {
 	return(
 		<>
-    <Flex justifyContent={"center"} >
+    <Flex justifyContent={"center"} mb={5}>
       <Box w={"90%"} padding={3} background={"blue.50"} shadow="2xl" rounded="xl">
         <Heading as={"h2"} size={"lg"} noOfLines={1} textAlign={"center"}>ログイン</Heading>
-			  <TextForm label={props.emailLabel} type={props.emailType} name={props.emailName} value={props.emailValue} placeholder={props.emailPlaceholder} onChange={props.emailOnChange}/>
-			  <TextForm label={props.passwordLabel} type={props.passwordType} name={props.passwordName} value={props.passwordValue} placeholder={props.passwordPlaceholder} onChange={props.passwordOnChange}/>
-      
+			  <TextForm label={"メールアドレス"} type={"email"} name={"email"} value={props.emailValue} placeholder={"xxxx@example.com"} onChange={props.emailOnChange}/>
+			  <TextForm label={"パスワード"} type={"password"} name={"password"} value={props.passwordValue} placeholder={"password"} onChange={props.passwordOnChange}/>
+             
         <Box textAlign={"right"}>
-          <SubmitButton onClickTo={props.onClickTo} txt={props.btnTxt} />
+          <SubmitButton onClickTo={props.onClickTo} txt={"ログイン"} />
         </Box>
       </Box>
     </Flex>

@@ -35,17 +35,9 @@ export default function Login(props) {
   }
 
     return (
-          <LoginFormSet emailLabel={"メールアドレス"}
-                        emailType={"email"}
-                        emailValue={email}
-                        emailName={"email"}
-                        emailPlaceholder={"xxxx@example"}
+          <LoginFormSet emailValue={email}
                         emailOnChange={event => setEmail(event.target.value)}
-                        passwordLabel={"パスワード"}
-                        passwordType={"password"}
-                        passwordName={"password"}
                         passwordValue={password}
-                        passwordPlaceholder={"**********"}
                         passwordOnChange={event => setPassword(event.target.value)}
                         onClickTo={handleSubmit}
                         btnTxt={"ログイン"}
