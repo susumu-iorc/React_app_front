@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 import * as CONSTANTS from "../constants.js";
+import {SubmitButton} from "../components/parts/Button"
 
 export default function Login(props) {
   const [email, setEmail] = useState("")
@@ -37,7 +38,6 @@ export default function Login(props) {
            <p>新規登録</p>
 
            {/* onSubmit、onChangeイベントを追加 */}
-            <form onSubmit={handleSubmit}>
                 <input
                     type="email"
                     name="email"
@@ -54,8 +54,7 @@ export default function Login(props) {
                 />
 
 
-                <button type="submit">ログイン</button>
-            </form>
+<SubmitButton onClickTo={handleSubmit} txt="ログイン" />
         </div>
     )
 }

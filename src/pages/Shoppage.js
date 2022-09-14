@@ -5,8 +5,7 @@ import * as CONSTANTS from "../constants.js";
 import makeHeaderToken from "../utility/makeHeaderToken";
 import ViewMap from "./GoogleMap.js"
 import { Link } from "react-router-dom";
-import {MemoForm} from "../components/MemoForm"
-import {SubmitButton} from "../components/Button"
+import {MemoFormSet} from "../components/MemoFormSet"
 
 
 export default function Shoppage(props){
@@ -100,6 +99,7 @@ export default function Shoppage(props){
       <a onClick={() =>handleFavoUpdate(1)} href="#"> ★</a>
       <a onClick={() =>handleFavoUpdate(2)} href="#"> ★</a>
       <a onClick={() =>handleFavoUpdate(3)} href="#"> ★</a><br />
+      
       <button
        onClick={handleEditButton}
        >
@@ -107,11 +107,12 @@ export default function Shoppage(props){
       </button><br />
       {viewEditForm}
      <br></br>
-      <MemoForm 
+      <MemoFormSet
         value={memo["memo"]}
         ph={"メモを入力"} doOnChange={event => setMemo((prev) => ({ ...prev, memo: event.target.value}))}
+        onClickTo={handleMemoSave}
+        txt="更新"
         />
-      <SubmitButton onClickTo={handleMemoSave} txt="更新" />
     </>
   )
 }

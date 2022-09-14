@@ -1,6 +1,6 @@
-import {Textarea} from '@chakra-ui/react'
 import * as React from 'react'
-export const MemoForm = (props) => {
+export const FavoStar= (props) => {
+  let tmp = ""
 	return(
 		<Textarea 
 		backgroundColor={"#fff"}
@@ -12,5 +12,3 @@ export const MemoForm = (props) => {
 		
 	)
 };
-
-
