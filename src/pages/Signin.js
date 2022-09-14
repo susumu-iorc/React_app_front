@@ -2,8 +2,9 @@ import React, { useState } from 'react'
 import axios from 'axios'
 import * as CONSTANTS from "../constants.js";
 import {SubmitButton} from "../components/parts/Button"
+import {SigninFormSet} from "../components/SigninFormSet"
 
-export default function Register(props) {
+export default function Signin(props) {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [passwordConfirmation, setPasswordConfirmation] = useState("")
@@ -34,32 +35,18 @@ export default function Register(props) {
 
     return (
         <div>
-           <p>新規登録</p>
 
            {/* onSubmit、onChangeイベントを追加 */}
-                <input
-                    type="email"
-                    name="email"
-                    placeholder="メールアドレス"
-                    value={email}
-                    onChange={event => setEmail(event.target.value)}
-                />
-                <input
-                    type="password"
-                    name="password"
-                    placeholder="パスワード"
-                    value={password}
-                    onChange={event => setPassword(event.target.value)}
-                />
-                <input
-                    type="password"
-                    name="password_confirmation"
-                    placeholder="確認用パスワード"
-                    value={passwordConfirmation}
-                    onChange={event => setPasswordConfirmation(event.target.value)}
-                />
+           <SigninFormSet
+                        emailValue={email}
+                        emailOnChange={event => setEmail(event.target.value)}
+                        passwordValue={password}
+                        passwordOnChange={event => setPassword(event.target.value)}
+                        passwordConfirmationValue={passwordConfirmation}
+                        passwordConfirmationOnChange={event => setPasswordConfirmation(event.target.value)}
+                        onClickTo={handleSubmit}
+                        />
 
-              <SubmitButton onClickTo={handleSubmit} txt="登録" />
         </div>
     )
 }

@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import Register from "./Register";
+import Signin from "./Signin"
 import Login from "./Login";
 import Logout from "./Logout";
 import * as a from "../constants.js";
@@ -20,7 +20,7 @@ const Home = (props) => {
             <h1>Home</h1>
             <h2>ログイン状態: {props.loggedInStatus ? "ログイン" : "ログアウト"}</h2>
             {/* 書き加え */}
-            <Register handleSuccessfulAuthentication={handleSuccessfulAuthentication} />
+            <Signin handleSuccessfulAuthentication={handleSuccessfulAuthentication} />
             <Login handleSuccessfulAuthentication={handleSuccessfulAuthentication} />
             <Logout handleLogout={props.handleLogout} handleLogoutSuccessfulAuthentication={handleLogoutSuccessfulAuthentication} apiUserTokens={props.apiUserTokens} reloadEnable={props.reloadEnable} reloadDisable={props.reloadDisable}/>
             <Link to="/base">BASEへ</Link><br />

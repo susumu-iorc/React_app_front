@@ -3,7 +3,7 @@ import Home from "./pages/Home";
 import Header from "./pages/Header";
 import Shoppage from "./pages/Shoppage";
 import Base from "./pages/Base";
-import Register from "./pages/Register";
+import Signin from "./pages/Signin";
 import Shoplist from "./pages/Shoplist";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
@@ -106,7 +106,7 @@ const App = () => {
       <Header />
         <Routes>
           <Route path={'/'} element={<Home loggedInStatus={loggedInStatus} handleLogin={handleLogin} handleLogout={handleLogout} apiUserTokens={apiUserTokens} reloadEnable={reloadEnable} reloadDisable={reloadDisable} />} />
-          <Route path={'/register/'} element={<Register />} />
+          <Route path={'/signin/'} element={<Signin />} />
           <Route path={'/login/'} element={<Login loggedInStatus={loggedInStatus} handleLogin={handleLogin} apiUserTokens={apiUserTokens}/>} />
           <Route path={"/base"} element={<Base loggedInStatus={loggedInStatus} apiUserTokens={apiUserTokens} userBase={userBase} setUserBase={setUserBase} />} />
           <Route path={"/dashboard"} element={<Dashboard loggedInStatus={loggedInStatus} handleLogin={handleLogin}/>} />
