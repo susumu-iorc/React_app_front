@@ -5,6 +5,7 @@ import * as CONSTANTS from "../constants.js";
 import makeHeaderToken from "../utility/makeHeaderToken";
 import ViewMap from "./GoogleMap.js"
 import { Link } from "react-router-dom";
+import {MemoForm} from "../components/MemoForm"
 import {SubmitButton} from "../components/Button"
 
 
@@ -89,7 +90,7 @@ export default function Shoppage(props){
   
         
   return (
-    <div> 
+    <> 
       <Link to="/shoplist">ショップリストへ</Link><br />
       店名: {memo["shop-name"]}<br />
       住所: {memo["shop-address"]}<br />
@@ -105,19 +106,12 @@ export default function Shoppage(props){
         編集
       </button><br />
       {viewEditForm}
-     
-                <textarea
-                    name="memo"
-                    placeholder="メモを入力"
-                    value={memo["memo"]}
-                    cols="40"
-                    rows="20"
-                    onChange={event => setMemo((prev) => ({ ...prev, memo: event.target.value}))}
-                />
-                <br />
-
-
-                <SubmitButton onClickTo={handleMemoSave} txt="更新" />
-    </div>
+     <br></br>
+      <MemoForm 
+        value={memo["memo"]}
+        ph={"メモを入力"} doOnChange={event => setMemo((prev) => ({ ...prev, memo: event.target.value}))}
+        />
+      <SubmitButton onClickTo={handleMemoSave} txt="更新" />
+    </>
   )
 }
