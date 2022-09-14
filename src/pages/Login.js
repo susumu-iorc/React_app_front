@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import axios from 'axios'
 import * as CONSTANTS from "../constants.js";
 import {SubmitButton} from "../components/parts/Button"
+import {LoginFormSet} from "../components/LoginFormSet"
 
 export default function Login(props) {
   const [email, setEmail] = useState("")
@@ -35,26 +36,26 @@ export default function Login(props) {
 
     return (
         <div>
+          <p>フォームの試験</p>
+          ここに→{email}表示
+          <LoginFormSet emailLabel={"メールアドレス"}
+                        emailType={"email"}
+                        emailValue={email}
+                        emailName={"email"}
+                        emailPlaceholder={"xxxx@example"}
+                        emailOnChange={event => setEmail(event.target.value)}
+                        passwordLabel={"パスワード"}
+                        passwordType={"password"}
+                        passwordName={"password"}
+                        passwordValue={password}
+                        passwordPlaceholder={"**********"}
+                        passwordOnChange={event => setPassword(event.target.value)}
+                        onClickTo={handleSubmit}
+                        btnTxt={"ログイン"}
+                        />
            <p>新規登録</p>
 
-           {/* onSubmit、onChangeイベントを追加 */}
-                <input
-                    type="email"
-                    name="email"
-                    placeholder="メールアドレス"
-                    value={email}
-                    onChange={event => setEmail(event.target.value)}
-                />
-                <input
-                    type="password"
-                    name="password"
-                    placeholder="パスワード"
-                    value={password}
-                    onChange={event => setPassword(event.target.value)}
-                />
 
-
-<SubmitButton onClickTo={handleSubmit} txt="ログイン" />
         </div>
     )
 }

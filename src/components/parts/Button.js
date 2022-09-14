@@ -10,6 +10,8 @@ import {Button} from '@chakra-ui/react'
 
 export const SubmitButton = (props) => {
 	return(
-		<Button colorScheme={'blue'} onClick={props.onClickTo}>{props.txt}</Button>
+		<>
+			<Button colorScheme={'blue'} onClick={props.onClickTo} mt={2}>{props.txt}</Button><br />
+		</>
 	)
 };
