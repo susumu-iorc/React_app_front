@@ -25,10 +25,7 @@ const Home = (props) => {
             <Logout handleLogout={props.handleLogout} handleLogoutSuccessfulAuthentication={handleLogoutSuccessfulAuthentication} apiUserTokens={props.apiUserTokens} reloadEnable={props.reloadEnable} reloadDisable={props.reloadDisable}/>
             <Link to="/base">BASEへ</Link><br />
             <Link to="/shoplist">SHOPLISTへ</Link>
-            <h2>const出力</h2>
-            ROOT_PATH = {a.API_URL}<br />
-            LOGIN_PATH = {a.API_VERSION}<br />
-            LOGIN_FULL_PATH = {a.API_SIGNIN_FULL_PATH}<br />
+
         </div>
     </>
   );

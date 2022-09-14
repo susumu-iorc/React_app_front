@@ -5,7 +5,7 @@ import * as CONSTANTS from "../constants.js";
 import makeHeaderToken from "../utility/makeHeaderToken";
 import ViewMap from "./GoogleMap.js"
 import { Link } from "react-router-dom";
-
+import {SubmitButton} from "../components/Button"
 
 
 export default function Shoppage(props){
@@ -105,7 +105,7 @@ export default function Shoppage(props){
         編集
       </button><br />
       {viewEditForm}
-      <form onSubmit={handleMemoSave}>
+     
                 <textarea
                     name="memo"
                     placeholder="メモを入力"
@@ -117,9 +117,7 @@ export default function Shoppage(props){
                 <br />
 
 
-                <button type="submit">更新</button>
-                </form>
-
+                <SubmitButton onClickTo={handleMemoSave} txt="更新" />
     </div>
   )
 }

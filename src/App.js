@@ -1,17 +1,19 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Home from "./components/Home";
-import Shoppage from "./components/Shoppage";
-import Base from "./components/Base";
-import Register from "./components/Register";
-import Shoplist from "./components/Shoplist";
-import Login from "./components/Login";
-import Dashboard from "./components/Dashboard";
+import Home from "./pages/Home";
+import Header from "./pages/Header";
+import Shoppage from "./pages/Shoppage";
+import Base from "./pages/Base";
+import Register from "./pages/Register";
+import Shoplist from "./pages/Shoplist";
+import Login from "./pages/Login";
+import Dashboard from "./pages/Dashboard";
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Cookies from 'universal-cookie';
 import * as CONSTANTS from "./constants.js";
 import makeHeaderToken from "./utility/makeHeaderToken";
-
+import { ChakraProvider } from "@chakra-ui/react";
+import theme from "./theme/theme";
 const App = () => {
 
   // クッキーを利用する
@@ -97,17 +99,23 @@ const App = () => {
 
 
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path={'/'} element={<Home loggedInStatus={loggedInStatus} handleLogin={handleLogin} handleLogout={handleLogout} apiUserTokens={apiUserTokens} reloadEnable={reloadEnable} reloadDisable={reloadDisable} />} />
-        <Route path={'/register/'} element={<Register />} />
-        <Route path={'/login/'} element={<Login loggedInStatus={loggedInStatus} handleLogin={handleLogin} apiUserTokens={apiUserTokens}/>} />
-        <Route path={"/base"} element={<Base loggedInStatus={loggedInStatus} apiUserTokens={apiUserTokens} userBase={userBase} setUserBase={setUserBase} />} />
-        <Route path={"/dashboard"} element={<Dashboard loggedInStatus={loggedInStatus} handleLogin={handleLogin}/>} />
-        <Route path={"/shoplist"} element={<Shoplist loggedInStatus={loggedInStatus} userBase ={userBase} handleLogin={handleLogin} shopList={shopList} />} />
-        <Route path={"/shop/:placeId"} element={<Shoppage  apiUserTokens={apiUserTokens}/>} />
-      </Routes>
-    </BrowserRouter>
+    <>
+    <ChakraProvider theme={theme}>
+     <BrowserRouter>
+      {/*ヘッダー*/}
+      <Header />
+        <Routes>
+          <Route path={'/'} element={<Home loggedInStatus={loggedInStatus} handleLogin={handleLogin} handleLogout={handleLogout} apiUserTokens={apiUserTokens} reloadEnable={reloadEnable} reloadDisable={reloadDisable} />} />
+          <Route path={'/register/'} element={<Register />} />
+          <Route path={'/login/'} element={<Login loggedInStatus={loggedInStatus} handleLogin={handleLogin} apiUserTokens={apiUserTokens}/>} />
+          <Route path={"/base"} element={<Base loggedInStatus={loggedInStatus} apiUserTokens={apiUserTokens} userBase={userBase} setUserBase={setUserBase} />} />
+          <Route path={"/dashboard"} element={<Dashboard loggedInStatus={loggedInStatus} handleLogin={handleLogin}/>} />
+          <Route path={"/shoplist"} element={<Shoplist loggedInStatus={loggedInStatus} userBase ={userBase} handleLogin={handleLogin} shopList={shopList} />} />
+          <Route path={"/shop/:placeId"} element={<Shoppage  apiUserTokens={apiUserTokens}/>} />
+        </Routes>
+      </BrowserRouter>
+    </ChakraProvider>
+    </>
   )
 };
 

@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { Link } from "react-router-dom";
-import ViewMap from "./GoogleMap.js"
 const ShopCard = ({ shops }) => {
   if(shops==null){return(<div><p>読込中</p></div>);}
   const list = shops.map(shop => {
