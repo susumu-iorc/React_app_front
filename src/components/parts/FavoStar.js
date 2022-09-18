@@ -1,14 +1,11 @@
+/* 星画像表示コンポーネント
+/* <Star color={色コード} />
+/**/
+
 import * as React from 'react'
+import { ReactComponent as Star } from './Star.svg';
 export const FavoStar= (props) => {
-  let tmp = ""
 	return(
-		<Textarea 
-		backgroundColor={"#fff"}
-		placeholder={props.ph}
-		value={props.value}
-		rows="20"
-		onChange={props.doOnChange}
-		/>
-		
+		<Star style={{fill:props.color}}/>
 	)
 };

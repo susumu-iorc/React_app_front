@@ -6,7 +6,7 @@ const theme = extendTheme({
     global: {
       body: {
         // bodyに指定したいstyle
-        backgroundColor: "orange.50",
+        backgroundColor: "gray.50",
         color: "gray.800",
       },
       p: {

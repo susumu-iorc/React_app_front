@@ -1,13 +1,16 @@
 /* 住所登録フォームを組み立てるコンポーネント
 /* <BaseFormSet
-/*                emailValue={email}
-/*                emailOnChange={event => setEmail(event.target.value)}
-/*                passwordValue={password}
-/*                passwordOnChange={event => setPassword(event.target.value)}
-/*                passwordConfirmationValue={passwordConfirmation}
-/*                passwordConfirmationOnChange={event => setPasswordConfirmation(event.target.value)}
-/*                onClickTo={handleSubmit}
-/*               />
+/*           <BaseFormSet 
+/*                   userPostCodeValue={props.userBase["userPostCode"]}
+/*                   userPostCodeOnChange={event => props.setUserBase((prevState) => ({ ...prevState, userPostCode: event.target.value}))}
+/*                   userPrefValue={props.userBase["userPref"]}
+/*                   userPrefOnChange={event => props.setUserBase((prevState) => ({ ...prevState, userPref: event.target.value}))}
+/*                   userCityValue={props.userBase["userCity"]}
+/*                   userCityOnChange={event => props.setUserBase((prevState) => ({ ...prevState, userCity:event.target.value}))}
+/*                   userAreaValue={props.userBase["userArea"]}
+/*                   userAreaOnChange={event => props.setUserBase((prevState) => ({ ...prevState, userArea:event.target.value}))}
+/*                   onClickTo={handleSubmit}
+/*                  />
 /*
 /**/
 
@@ -21,7 +24,7 @@ export const BaseFormSet = (props) => {
 		<>
     <Flex justifyContent={"center"} mb={5}>
       <Box w={"90%"} padding={3} background={"blue.50"} shadow="2xl" rounded="xl">
-        <Heading as={"h2"} size={"lg"} noOfLines={1} textAlign={"center"}>ユーザー登録</Heading>
+        <Heading as={"h2"} size={"lg"} noOfLines={1} textAlign={"center"}>住所登録</Heading>
 			  <TextForm label={"郵便番号"} type={"text"} name={"userPostCode"} value={props.userPostCodeValue} placeholder={"163-8001"} onChange={props.userPostCodeOnChange}/>
 			  <TextForm label={"都道府県"} type={"userPref"} name={"userPref"} value={props.userPrefValue} placeholder={"東京都"} onChange={props.userPrefOnChange}/>
         <TextForm label={"市区町村"} type={"userCity"} name={"userCity"} value={props.userCityValue} placeholder={"新宿区"} onChange={props.userCityOnChange}/>
