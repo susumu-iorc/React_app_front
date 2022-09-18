@@ -3,6 +3,7 @@ import axios from 'axios';
 import * as CONSTANTS from "../constants.js";
 import React, { useState } from 'react';
 import makeHeaderToken from "../utility/makeHeaderToken";
+import {BaseFormSet} from "../components/BaseFormSet"
 
 const Base = (props) => {
 	console.log("props -> ",props.loggedInStatus);
@@ -44,39 +45,19 @@ const handleSubmit = (event) => {
            <p>住所登録</p>
 
            {/* onSubmit、onChangeイベントを追加 */}
-            <form onSubmit={handleSubmit}>
-                <input
-                    type="text"
-                    name="userPostCode"
-                    placeholder="郵便番号"
-                    value={props.userBase["userPostCode"]}
-                    onChange={event => props.setUserBase((prevState) => ({ ...prevState, userPostCode: event.target.value}))}
-                />
-                <input
-                    type="text"
-                    name="userPref"
-                    placeholder="都道府県"
-                    value={props.userBase["userPref"]}
-                    onChange={event => props.setUserBase((prevState) => ({ ...prevState, userPref: event.target.value}))}
-                />
-								<input
-                    type="text"
-                    name="userCity"
-                    placeholder="市区町村"
-                    value={props.userBase["userCity"]}
-                    onChange={event => props.setUserBase((prevState) => ({ ...prevState, userCity:event.target.value}))}
-                />
-								<input
-                    type="text"
-                    name="userArea"
-                    placeholder="町域番地"
-                    value={props.userBase["userArea"]}
-                    onChange={event => props.setUserBase((prevState) => ({ ...prevState, userArea:event.target.value}))}
-                />
 
-
-                <button type="submit">住所登録</button>
-            </form>
+           <BaseFormSet 
+                  userPostCodeValue={props.userBase["userPostCode"]}
+                  userPostCodeOnChange={event => props.setUserBase((prevState) => ({ ...prevState, userPostCode: event.target.value}))}
+                  userPrefValue={props.userBase["userPref"]}
+                  userPrefOnChange={event => props.setUserBase((prevState) => ({ ...prevState, userPref: event.target.value}))}
+                  userCityValue={props.userBase["userCity"]}
+                  userCityOnChange={event => props.setUserBase((prevState) => ({ ...prevState, userCity:event.target.value}))}
+                  userAreaValue={props.userBase["userArea"]}
+                  userAreaOnChange={event => props.setUserBase((prevState) => ({ ...prevState, userArea:event.target.value}))}
+                  onClickTo={handleSubmit}
+                 />
+          
         </div>
 	<div>
             <h1>Home</h1>

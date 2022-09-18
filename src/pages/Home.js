@@ -24,8 +24,7 @@ const Home = (props) => {
             <Signin handleSuccessfulAuthentication={handleSuccessfulAuthentication} />
             <Login handleSuccessfulAuthentication={handleSuccessfulAuthentication} />
             <Logout handleLogout={props.handleLogout} handleLogoutSuccessfulAuthentication={handleLogoutSuccessfulAuthentication} apiUserTokens={props.apiUserTokens} reloadEnable={props.reloadEnable} reloadDisable={props.reloadDisable}/>
-            <Link to="/base">BASEへ</Link><br />
-            <Link to="/shoplist">SHOPLISTへ</Link>
+            <LinkButton to="/base" txt="BASEへ" />
             <LinkButton to="/shoplist" txt="SHOPLISTへ" />
         </div>
     </>
