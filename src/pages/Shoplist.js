@@ -4,6 +4,7 @@ import { ShopCard } from '../components/ShopCard';
 
 
 export default function Shoplist(props) {
+  console.log(props.shopList["shop"])
         return (
         <div>
         <Link to="/">ホームへ</Link><br />

@@ -4,16 +4,16 @@
 
 import * as React from 'react'
 import { FavoStar } from './parts/FavoStar';
-import { Flex } from '@chakra-ui/react';
-const starColorBlack  = "#000"
-const starColorYellow = "#EE0"
+import { Flex, Box } from '@chakra-ui/react';
+const starColorEnable  = "#E60"
+const starColorDisable = "#999"
 export const FavoStarSet = (props) => {
 	return(
     <>
-      <Flex>
-	    	<FavoStar color={ (props.favo == 0) ? starColorBlack : starColorYellow}/>
-	  	  <FavoStar color={ (props.favo <= 1) ? starColorBlack : starColorYellow}/>
-	  	  <FavoStar color={ (props.favo <= 2) ? starColorBlack : starColorYellow}/>
+      <Flex justifyContent={"center"}>
+	    	<FavoStar color={ (props.favo == 0) ? starColorDisable : starColorEnable}/>
+	  	  <FavoStar color={ (props.favo <= 1) ? starColorDisable : starColorEnable}/>
+	  	  <FavoStar color={ (props.favo <= 2) ? starColorDisable : starColorEnable}/>
       </Flex>
     </>
 	)
