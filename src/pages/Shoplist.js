@@ -10,7 +10,7 @@ export default function Shoplist(props) {
         <Link to="/">ホームへ</Link><br />
            <p>お店一覧</p>
 
-           <ShopCard shops={props.shopList["shop"]} />
+           <ShopCard shops={props.shopList["shop"]} userBase={props.userBase} />
 
         </div>
     )

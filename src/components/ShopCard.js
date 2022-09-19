@@ -3,23 +3,34 @@ import { Link } from "react-router-dom";
 import { Text, Box, Flex, Heading, CircularProgress, Divider} from '@chakra-ui/react';
 import { FavoStarSet } from './FavoStarSet';
 import { Distance } from './parts/Distance'
-export const ShopCard = ({ shops }) => {
-  if(shops==null){return(<CircularProgress isIndeterminate color='green.300' />)}
-  const list = shops.map(shop => {
+import { MapLink } from './parts/MapLink'
+export const ShopCard = (props) => {
+  if(props.shops==null){return(<CircularProgress isIndeterminate color='green.300' />)}
+  const list = props.shops.map(shop => {
     let shopLink = "/shop/" + shop["place-id"]
     return (
       <>
         <Flex justifyContent={"center"} mb={5}>
           <Box w={"90%"} padding={3} background={"blue.50"} shadow="2xl" rounded="xl">
+            {/* 店名とお気に入り度（水平線の上部分）はmemoページへリンクする*/}
             <Link to= {shopLink}>
-              <Heading as={"h2"} size={"lg"} noOfLines={1} textAlign={"center"}>
-                {shop["shop-name"]}
-              </Heading>
+              <Flex justifyContent={"center"}>
+                <Heading as={"h2"} size={"lg"} noOfLines={1} textAlign={"center"}>
+                  {shop["shop-name"]}
+                </Heading>
+              </Flex>
               <FavoStarSet favo={shop["favorite"]} />
-              <Divider arientation='horizontal' size={"lg"} />
-                <Distance distance={shop["distance-text"]} duration={shop["duration-text"]}/>
-              <Text fontSize='sm' textAlign={"right"} >{shop["shop-address"]}</Text>
             </Link>
+            <Divider arientation='horizontal' size={"lg"} />
+            {/* 下の情報部分*/}
+            <Flex justifyContent={"right"}>
+              <Box mr='3'>
+                <Distance distance={shop["distance-text"]} duration={shop["duration-text"]}/>
+                <Text fontSize='sm' textAlign={"right"} >{shop["shop-address"]}</Text>
+              </Box>
+              <MapLink userBase={props.userBase} shopName={shop["shop-name"]} placeId={shop["place-id"]}/>    
+            </Flex>
+
           </Box>
         </Flex>
       </>

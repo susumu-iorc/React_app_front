@@ -1,5 +1,5 @@
-/* 星画像表示コンポーネント
-/* <Star color={色コード} />
+/* 距離と時間を表示するコンポーネント
+/* 
 /**/
 
 import * as React from 'react'
