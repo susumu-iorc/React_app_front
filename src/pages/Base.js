@@ -18,7 +18,7 @@ const Base = (props) => {
 	},[]);
 
 	const handleSubmit = (event) => {
-		axios.post( CONSTANTS.API_USERBASE_UPDATE_FULL_PATH,
+		axios.patch( CONSTANTS.API_USERBASE_PATCH_FULL_PATH,
 			{
 				"user-post-code"     : props.userBase["userPostCode"],
 				"user-pref"     : props.userBase["userPref"],

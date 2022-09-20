@@ -3,7 +3,9 @@ import { useEffect } from 'react';
 const Shoplist = (props) => {
 
   return (
-    <ShopCard shops={props.shopList["shop"]} userBase={props.userBase} />
+    <>
+      <ShopCard shops={props.shopList["shop"]} userBase={props.userBase} />
+    </>
   );
 };
 export default Shoplist

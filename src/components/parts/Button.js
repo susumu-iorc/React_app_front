@@ -68,3 +68,14 @@ const [toggle, setToggle] = useState(false)
 		</>
 	)
 };
+
+export const ToggleButton2 = (props) => {
+	const [toggle, setToggle] = useState(false)
+	
+		return(
+			<>
+				<Button w={"6em"} colorScheme={'green'} onClick={() => {props.onClickTo();setToggle(!toggle)}}
+								rounded="5" margin={2} variant={toggle?'solid':'outline'} >{props.txt}</Button><br />
+			</>
+		)
+	};

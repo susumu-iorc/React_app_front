@@ -41,7 +41,7 @@ export default function Shoppage(props){
 
   // メモ保存関数
   const handleMemoSave = () =>{
-    axios.post( CONSTANTS.API_MEMO_UPDATE_FULL_PATH,
+    axios.patch( CONSTANTS.API_MEMO_PATCH_FULL_PATH,
       {
         "place-id" : placeId,
         "memo"     : memo["memo"]
@@ -68,7 +68,7 @@ export default function Shoppage(props){
 
   // お気に入り更新関数
   const handleFavoUpdate = (favoN) =>{
-    axios.post( CONSTANTS.API_MEMO_UPDATE_FULL_PATH,
+    axios.patch( CONSTANTS.API_MEMO_PATCH_FULL_PATH,
       {
         "place-id" : placeId,
         "favorite"     : favoN

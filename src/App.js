@@ -26,7 +26,7 @@ const App = () => {
   const [shopList, setShopList] = useState({})
 
   const [userBase, setUserBase] = useState({userId:null, userPostCode:null, userPref:null, userCity:null, userArea:null, userLat:null, userLng:null})
-
+  const [sort, setSort] = useState(0)
   // apiのトークンを管理する
   const updateApiUserTokens = (__token, __client , __uid) => {
     cookies.set("access-token", __token,);
@@ -73,7 +73,8 @@ const App = () => {
 
   // ShopListの取得
   const getShopList = () =>{
-    axios.get(CONSTANTS.API_SHOPLIST_GET_FULL_PATH, { withCredentials: true,headers: makeHeaderToken(apiUserTokens)})
+    setShopList({})
+    axios.get(CONSTANTS.API_SHOPLIST_GET_FULL_PATH + sort, { withCredentials: true,headers: makeHeaderToken(apiUserTokens)})
       .then(response => {
         setShopList(response.data["data"])
       }
@@ -82,14 +83,18 @@ const App = () => {
 
     });
   }
+  // ShopListのソート
+  const handleSort = (data) => {
+    setSort(data.sort)
+    getShopList()
+    window.location.reload()
+  };
+
   // 画面開いたときに回す処理
   useEffect(() => {
     checkLogin();
   },[]);
 
-  // ログインしたときに回す処理
-  useEffect(() => {
-  },[]);
 
 
   return (
@@ -99,7 +104,7 @@ const App = () => {
       {/*ヘッダー*/}
       <Header loggedInStatus = {loggedInStatus} handleLogout = {handleLogout} apiUserTokens = {apiUserTokens}/>
         <Routes>
-          <Route path={'/'}               element={<Home      loggedInStatus = {loggedInStatus} handleLogin = {handleLogin} apiUserTokens = {apiUserTokens} userBase ={userBase} shopList={shopList} test={"導通テスト"}/>} />
+          <Route path={'/'}               element={<Home      loggedInStatus = {loggedInStatus} handleLogin = {handleLogin} apiUserTokens = {apiUserTokens} userBase ={userBase} shopList={shopList} sort={sort} handleSort={handleSort} />} />
           <Route path={'/signup/'}        element={<Signup />} />
           <Route path={'/login/'}         element={<Login     loggedInStatus = {loggedInStatus} handleLogin = {handleLogin} apiUserTokens = {apiUserTokens}/>} />
           <Route path={"/base"}           element={<Base      loggedInStatus = {loggedInStatus} handleLogin = {handleLogin} apiUserTokens = {apiUserTokens} userBase={userBase} setUserBase={setUserBase} />} />
