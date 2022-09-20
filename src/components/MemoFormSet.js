@@ -11,12 +11,14 @@
 import * as React from 'react'
 import {MemoForm} from "./parts/MemoForm"
 import {SubmitButton} from "./parts/Button"
-
+import { Box } from '@chakra-ui/react';
 export const MemoFormSet = (props) => {
 	return(
 		<>
-			<MemoForm {...props}/>
-			<SubmitButton {...props} />
+			<Box display={props.display?"block":"none"}>
+				<SubmitButton {...props} />
+				<MemoForm {...props}/>
+			</Box>
 		</>
 	)
 };
