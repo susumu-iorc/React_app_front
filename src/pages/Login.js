@@ -45,10 +45,10 @@ export default function Login(props) {
   }
 
   return (
-<>
-<Box display={(error == 1)? 'block' : 'none'}>
-          <Alert status='error' margin={"2"} >
-            <AlertIcon />
+    <>
+      <Box display={(error == 1)? 'block' : 'none'}>
+        <Alert status='error' margin={"2"} >
+          <AlertIcon />
             <AlertTitle>ログインのエラー!</AlertTitle>
             <AlertDescription>メールアドレスもしくはパスワードが間違っています。</AlertDescription>
           </Alert>
@@ -60,12 +60,12 @@ export default function Login(props) {
             <AlertDescription>管理者にお問い合わせください。</AlertDescription>
           </Alert>
         </Box>
-    <LoginFormSet emailValue={email}
-                  emailOnChange={event => setEmail(event.target.value)}
-                  passwordValue={password}
-                  passwordOnChange={event => setPassword(event.target.value)}
-                  onClickTo={handleSubmit}
-                 />
-</>
+      <LoginFormSet emailValue={email}
+                    emailOnChange={event => setEmail(event.target.value)}
+                    passwordValue={password}
+                    passwordOnChange={event => setPassword(event.target.value)}
+                    onClickTo={handleSubmit}
+                  />
+    </>
   )
 }
