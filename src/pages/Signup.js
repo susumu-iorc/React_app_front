@@ -2,9 +2,9 @@ import React, { useState } from 'react'
 import axios from 'axios'
 import * as CONSTANTS from "../constants.js";
 import {SubmitButton} from "../components/parts/Button"
-import {SigninFormSet} from "../components/SigninFormSet"
+import {SignupFormSet} from "../components/SignupFormSet"
 
-export default function Signin(props) {
+export default function Signup(props) {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [passwordConfirmation, setPasswordConfirmation] = useState("")
@@ -34,10 +34,8 @@ export default function Signin(props) {
   }
 
     return (
-        <div>
 
-           {/* onSubmit、onChangeイベントを追加 */}
-           <SigninFormSet
+           <SignupFormSet
                         emailValue={email}
                         emailOnChange={event => setEmail(event.target.value)}
                         passwordValue={password}
@@ -47,6 +45,6 @@ export default function Signin(props) {
                         onClickTo={handleSubmit}
                         />
 
-        </div>
+
     )
 }

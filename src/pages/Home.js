@@ -1,34 +1,28 @@
 import { Link, useNavigate } from "react-router-dom";
-import Signin from "./Signin"
 import Login from "./Login";
 import Logout from "./Logout";
+import Shoplist from "./Shoplist";
 import * as a from "../constants.js";
 import { LinkButton } from "../components/parts/Button";
+import { useEffect } from "react";
+
 const Home = (props) => {
-  const navigate = useNavigate();  
-  const handleSuccessfulAuthentication = (data) => {
-    props.handleLogin(data)
-    navigate("/dashboard",data)
-  }
-  const handleLogoutSuccessfulAuthentication = (data) => {
-    props. handleLogout(data)
-    navigate("/dashboard",data)
-  }
+const navigate = useNavigate()
+
+
+
  
+
+  if(props.loggedInStatus){
+return (
+  <Shoplist {...props} />
+);
+  }else{
+
   return (
-    <>
-        <div>
-            <h1>Home</h1>
-            <h2>ログイン状態: {props.loggedInStatus ? "ログイン" : "ログアウト"}</h2>
-            {/* 書き加え */}
-            <Signin handleSuccessfulAuthentication={handleSuccessfulAuthentication} />
-            <Login handleSuccessfulAuthentication={handleSuccessfulAuthentication} />
-            <Logout handleLogout={props.handleLogout} handleLogoutSuccessfulAuthentication={handleLogoutSuccessfulAuthentication} apiUserTokens={props.apiUserTokens} reloadEnable={props.reloadEnable} reloadDisable={props.reloadDisable}/>
-            <LinkButton to="/base" txt="BASEへ" />
-            <LinkButton to="/shoplist" txt="SHOPLISTへ" />
-        </div>
-    </>
+<Login {...props}/>
   );
+  };
 };
 
 export default Home;

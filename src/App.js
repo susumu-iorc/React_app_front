@@ -3,7 +3,7 @@ import Home from "./pages/Home";
 import Header from "./pages/Header";
 import Shoppage from "./pages/Shoppage";
 import Base from "./pages/Base";
-import Signin from "./pages/Signin";
+import Signup from "./pages/Signup";
 import Shoplist from "./pages/Shoplist";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
@@ -103,15 +103,13 @@ const App = () => {
     <ChakraProvider theme={theme}>
      <BrowserRouter>
       {/*ヘッダー*/}
-      <Header />
+      <Header handleLogout={handleLogout} apiUserTokens={apiUserTokens}/>
         <Routes>
-          <Route path={'/'} element={<Home loggedInStatus={loggedInStatus} handleLogin={handleLogin} handleLogout={handleLogout} apiUserTokens={apiUserTokens} reloadEnable={reloadEnable} reloadDisable={reloadDisable} />} />
-          <Route path={'/signin/'} element={<Signin />} />
-          <Route path={'/login/'} element={<Login loggedInStatus={loggedInStatus} handleLogin={handleLogin} apiUserTokens={apiUserTokens}/>} />
-          <Route path={"/base"} element={<Base loggedInStatus={loggedInStatus} apiUserTokens={apiUserTokens} userBase={userBase} setUserBase={setUserBase} />} />
-          <Route path={"/dashboard"} element={<Dashboard loggedInStatus={loggedInStatus} handleLogin={handleLogin}/>} />
-          <Route path={"/shoplist"} element={<Shoplist loggedInStatus={loggedInStatus} userBase ={userBase} handleLogin={handleLogin} shopList={shopList} />} />
-          <Route path={"/shop/:placeId"} element={<Shoppage  apiUserTokens={apiUserTokens} userBase ={userBase}/>} />
+          <Route path={'/'}               element={<Home      loggedInStatus = {loggedInStatus} handleLogin = {handleLogin} apiUserTokens = {apiUserTokens} userBase ={userBase} shopList={shopList} test={"導通テスト"}/>} />
+          <Route path={'/signup/'}        element={<Signup />} />
+          <Route path={'/login/'}         element={<Login     loggedInStatus = {loggedInStatus} handleLogin = {handleLogin} apiUserTokens = {apiUserTokens}/>} />
+          <Route path={"/base"}           element={<Base      loggedInStatus = {loggedInStatus} handleLogin = {handleLogin} apiUserTokens = {apiUserTokens} userBase={userBase} setUserBase={setUserBase} />} />
+          <Route path={"/shop/:placeId"}  element={<Shoppage  loggedInStatus = {loggedInStatus} handleLogin = {handleLogin} apiUserTokens = {apiUserTokens} userBase ={userBase}/>} />
         </Routes>
       </BrowserRouter>
     </ChakraProvider>

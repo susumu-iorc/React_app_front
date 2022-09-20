@@ -1,17 +1,9 @@
-import React, { useState } from 'react'
-import { Link } from "react-router-dom";
 import { ShopCard } from '../components/ShopCard';
+import { useEffect } from 'react';
+const Shoplist = (props) => {
 
-
-export default function Shoplist(props) {
-  console.log(props.shopList["shop"])
-        return (
-        <div>
-        <Link to="/">ホームへ</Link><br />
-           <p>お店一覧</p>
-
-           <ShopCard shops={props.shopList["shop"]} userBase={props.userBase} />
-
-        </div>
-    )
-}
+  return (
+    <ShopCard shops={props.shopList["shop"]} userBase={props.userBase} />
+  );
+};
+export default Shoplist

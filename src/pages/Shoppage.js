@@ -97,7 +97,7 @@ export default function Shoppage(props){
   return (
     <>       
     <Box textAlign={"center"}>
-      <LinkButton to="/shoplist" txt="SHOPLISTへ" />
+      <LinkButton to="/" txt="ホームへ" />
     </Box>
     <Flex justifyContent={"center"} mb={5}>
       <Box w={"90%"} padding={3} background={"blue.50"} shadow="2xl" rounded="xl">

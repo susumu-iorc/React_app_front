@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import axios from 'axios'
 import * as CONSTANTS from "../constants.js";
 import makeHeaderToken from "../utility/makeHeaderToken";
+import { SubmitButton } from '../components/parts/Button.js';
 
 export default function Logout(props) {
   const [email, setEmail] = useState("")
@@ -10,7 +11,7 @@ export default function Logout(props) {
   const handleLogoutBtn = (event) => {
     // delete
 
-    props.reloadDisable()
+console.log("ログアウト作業開始")
     axios.delete( CONSTANTS.API_SIGNOUT_FULL_PATH,{ withCredentials: true,headers: makeHeaderToken(props.apiUserTokens)})
         .then(response => {
         // 成功した場合
@@ -19,15 +20,15 @@ export default function Logout(props) {
 
           //console.log("へっだー: ", response.headers)
           // ログアウト処理を行う
-          props.handleLogoutSuccessfulAuthentication(response.headers)
+          props.handleLogout(response.headers)
+          window.location.reload()
+          window.location.href = "/"
         }
       }).catch(error => {
         // 失敗した場合
         console.log("registration error", error)
       })
-    event.preventDefault()
 
-    props.reloadEnable()
 
   }
 
@@ -36,9 +37,11 @@ export default function Logout(props) {
            <p>ログアウトを行う</p>
 
            {/* onSubmit、onChangeイベントを追加 */}
-            <form onSubmit={handleLogoutBtn}>
-                <button type="submit">ログアウト</button>
-            </form>
+
+             <SubmitButton
+       onClickTo={handleLogoutBtn}
+        txt=" ログアウト"
+        />
         </div>
     )
 }

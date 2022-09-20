@@ -13,6 +13,7 @@ import * as React from 'react'
 import { Box , Heading, Flex, Text} from '@chakra-ui/react';
 import {TextForm} from "./parts/TextForm"
 import {SubmitButton} from "./parts/Button"
+import { Link } from 'react-router-dom';
 
 export const LoginFormSet = (props) => {
 	return(
@@ -25,6 +26,9 @@ export const LoginFormSet = (props) => {
              
         <Box textAlign={"right"}>
           <SubmitButton onClickTo={props.onClickTo} txt={"ログイン"} />
+          <Link to='/signup'>
+            <Text color={'blue.700'} fontSize={'sm'} as={'ins'}>ユーザー登録はこちらへ</Text>
+          </Link>
         </Box>
       </Box>
     </Flex>

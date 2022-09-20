@@ -7,6 +7,7 @@ export default function Login(props) {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
 
+
   const handleSubmit = (event) => {
   
     axios.post( CONSTANTS.API_SIGNIN_FULL_PATH,
@@ -24,7 +25,10 @@ export default function Login(props) {
 
           //console.log("へっだー: ", response.headers)
           // ログイン処理を行う
-          props.handleSuccessfulAuthentication(response.headers)
+console.log("check",props.test)
+    props.handleLogin(response.headers)
+
+    window.location.href = "/"
         }
       }).catch(error => {
         // 失敗した場合

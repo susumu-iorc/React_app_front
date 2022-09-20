@@ -5,8 +5,8 @@ import {
 } from '@chakra-ui/react'
 import * as React from 'react'
 import { Link } from "react-router-dom";
-
-const Header = () => {
+import Logout from './Logout';
+const Header = (props) => {
   return (
     <>
       <Box p={5} color={"#fff"} bg={"#000"} letterSpacing="1em" top={0} position="sticky" zIndex={"sticky"}  mb={5}>
@@ -16,6 +16,7 @@ const Header = () => {
             </Heading>
           </Link>
       </Box>
+      <Logout { ...props}/>
     </>
   )
 }
