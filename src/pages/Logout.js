@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import axios from 'axios'
 import * as CONSTANTS from "../constants.js";
 import makeHeaderToken from "../utility/makeHeaderToken";
-import { SubmitButton } from '../components/parts/Button.js';
+import { LogoutButton } from '../components/parts/Button.js';
 
 export default function Logout(props) {
   const [email, setEmail] = useState("")
@@ -33,15 +33,6 @@ console.log("ログアウト作業開始")
   }
 
     return (
-        <div>
-           <p>ログアウトを行う</p>
-
-           {/* onSubmit、onChangeイベントを追加 */}
-
-             <SubmitButton
-       onClickTo={handleLogoutBtn}
-        txt=" ログアウト"
-        />
-        </div>
-    )
+             <LogoutButton onClickTo={handleLogoutBtn} txt="ログアウト"/>
+              )
 }

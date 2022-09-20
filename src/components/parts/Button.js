@@ -17,6 +17,21 @@ export const SubmitButton = (props) => {
 	)
 };
 
+/* ログアウトボタン
+/* <SubmitButton
+/*        onClickTo={ ボタン実行時のイベント }
+/*        txt=" ボタンの文字 "
+/*        />
+/*
+/**/
+export const LogoutButton = (props) => {
+	return(
+		<>
+			<Button w={"10em"} border={"1px"}  colorScheme={"red"} rounded="100" onClick={props.onClickTo} margin={2} >{props.txt}</Button><br />
+		</>
+	)
+};
+
 /* リンクボタン
 /* <SubmitButton
 /*        to={ 移動先 }

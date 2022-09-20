@@ -103,7 +103,7 @@ const App = () => {
     <ChakraProvider theme={theme}>
      <BrowserRouter>
       {/*ヘッダー*/}
-      <Header handleLogout={handleLogout} apiUserTokens={apiUserTokens}/>
+      <Header loggedInStatus = {loggedInStatus} handleLogout = {handleLogout} apiUserTokens = {apiUserTokens}/>
         <Routes>
           <Route path={'/'}               element={<Home      loggedInStatus = {loggedInStatus} handleLogin = {handleLogin} apiUserTokens = {apiUserTokens} userBase ={userBase} shopList={shopList} test={"導通テスト"}/>} />
           <Route path={'/signup/'}        element={<Signup />} />
