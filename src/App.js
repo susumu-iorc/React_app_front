@@ -5,6 +5,7 @@ import Shoppage from "./pages/Shoppage";
 import Base from "./pages/Base";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
+import NotFound from "./pages/404";
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Cookies from 'universal-cookie';
@@ -103,6 +104,7 @@ const App = () => {
           <Route path={'/login/'}         element={<Login     loggedInStatus = {loggedInStatus} handleLogin = {handleLogin} apiUserTokens = {apiUserTokens}/>} />
           <Route path={"/base"}           element={<Base      loggedInStatus = {loggedInStatus} handleLogin = {handleLogin} apiUserTokens = {apiUserTokens} userBase={userBase} setUserBase={setUserBase} />} />
           <Route path={"/shop/:placeId"}  element={<Shoppage  loggedInStatus = {loggedInStatus} handleLogin = {handleLogin} apiUserTokens = {apiUserTokens} userBase ={userBase}/>} />
+          <Route path={"*"}               element={<NotFound />} />    
         </Routes>
       </BrowserRouter>
     </ChakraProvider>
