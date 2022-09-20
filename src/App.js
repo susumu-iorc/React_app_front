@@ -4,9 +4,7 @@ import Header from "./pages/Header";
 import Shoppage from "./pages/Shoppage";
 import Base from "./pages/Base";
 import Signup from "./pages/Signup";
-import Shoplist from "./pages/Shoplist";
 import Login from "./pages/Login";
-import Dashboard from "./pages/Dashboard";
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Cookies from 'universal-cookie';
@@ -24,13 +22,9 @@ const App = () => {
  
   // ログイン状況の宣言
   const [loggedInStatus, setLoggedInStatus] = useState(null);
-  const [reloadTriggerState, setReloadTriggerState] = useState(true)
   const [shopList, setShopList] = useState({})
 
   const [userBase, setUserBase] = useState({userId:null, userPostCode:null, userPref:null, userCity:null, userArea:null, userLat:null, userLng:null})
-  // データ読み込みトリガー
-  const reloadEnable =() => (setReloadTriggerState(true))
-  const reloadDisable =() => (setReloadTriggerState(false))
 
   // apiのトークンを管理する
   const updateApiUserTokens = (__token, __client , __uid) => {
@@ -81,7 +75,6 @@ const App = () => {
     axios.get(CONSTANTS.API_SHOPLIST_GET_FULL_PATH, { withCredentials: true,headers: makeHeaderToken(apiUserTokens)})
       .then(response => {
         setShopList(response.data["data"])
-        console.log(shopList)
       }
       ).catch(error => {
         setLoggedInStatus(false)

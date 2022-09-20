@@ -5,7 +5,15 @@ import { FavoStarSet } from './FavoStarSet';
 import { Distance } from './parts/Distance'
 import { MapLink } from './parts/MapLink'
 export const ShopCard = (props) => {
-  if(props.shops==null){return(<CircularProgress isIndeterminate color='green.300' />)}
+  if(props.shops==null){
+    return(
+      <>
+        <Flex justifyContent={"center"} mb={5}>
+          <CircularProgress isIndeterminate color='green.300' />
+        </Flex>
+      </>
+    )
+  }
   const list = props.shops.map(shop => {
     let shopLink = "/shop/" + shop["place-id"]
     return (

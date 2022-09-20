@@ -1,13 +1,16 @@
-import {useNavigate} from "react-router-dom";
+import {useNavigate, useLocation} from "react-router-dom";
 import axios from 'axios';
 import * as CONSTANTS from "../constants.js";
 import React, { useEffect  } from 'react';
 import makeHeaderToken from "../utility/makeHeaderToken";
 import {BaseFormSet} from "../components/BaseFormSet"
-
+import { LinkButton } from "../components/parts/Button";
+import { Box, Alert, AlertIcon, AlertTitle, AlertDescription } from '@chakra-ui/react'
 const Base = (props) => {
 	const navigate = useNavigate()
-
+  const {state} = useLocation();
+  const msg = state?.msg ? state.msg : 0
+	
 	useEffect(() => {
 		if(!props.loggedInStatus){
     	window.location.href = "/"
@@ -28,9 +31,7 @@ const Base = (props) => {
 				// 成功した場合
 				console.log("registration res", response)
 				if (response.data["access-token"] !== null) {
-
-					console.log("へっだー: ", response.headers)
-					navigate("/")
+					window.location.href = "/" 
 				}
 			}).catch(error => {
 				// 失敗した場合
@@ -40,7 +41,18 @@ const Base = (props) => {
 	}
 
   return (
-           <BaseFormSet 
+		<>
+		  <Box display={(msg == 1) || (props.msg == 1) ? 'block' : 'none'}>
+        <Alert status='warning' margin={"2"} >
+        	<AlertIcon />
+        	<AlertTitle>住所が設定されていません</AlertTitle>
+        	<AlertDescription>住所を設定してください</AlertDescription>
+      	</Alert>
+      </Box>    
+			<Box textAlign={"center"}>
+				<LinkButton to="/" txt="ホームへ" />
+			</Box>
+      <BaseFormSet 
                   userPostCodeValue={props.userBase["userPostCode"]}
                   userPostCodeOnChange={event => props.setUserBase((prevState) => ({ ...prevState, userPostCode: event.target.value}))}
                   userPrefValue={props.userBase["userPref"]}
@@ -51,6 +63,7 @@ const Base = (props) => {
                   userAreaOnChange={event => props.setUserBase((prevState) => ({ ...prevState, userArea:event.target.value}))}
                   onClickTo={handleSubmit}
                  />
+		</>
           
   );
 };
