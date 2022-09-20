@@ -111,7 +111,7 @@ const App = () => {
           <Route path={"/base"} element={<Base loggedInStatus={loggedInStatus} apiUserTokens={apiUserTokens} userBase={userBase} setUserBase={setUserBase} />} />
           <Route path={"/dashboard"} element={<Dashboard loggedInStatus={loggedInStatus} handleLogin={handleLogin}/>} />
           <Route path={"/shoplist"} element={<Shoplist loggedInStatus={loggedInStatus} userBase ={userBase} handleLogin={handleLogin} shopList={shopList} />} />
-          <Route path={"/shop/:placeId"} element={<Shoppage  apiUserTokens={apiUserTokens}/>} />
+          <Route path={"/shop/:placeId"} element={<Shoppage  apiUserTokens={apiUserTokens} userBase ={userBase}/>} />
         </Routes>
       </BrowserRouter>
     </ChakraProvider>

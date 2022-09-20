@@ -11,14 +11,22 @@
 import * as React from 'react'
 import {MemoForm} from "./parts/MemoForm"
 import {SubmitButton} from "./parts/Button"
-import { Box } from '@chakra-ui/react';
+import { Box, Flex } from '@chakra-ui/react';
 export const MemoFormSet = (props) => {
 	return(
 		<>
-			<Box display={props.display?"block":"none"}>
-				<SubmitButton {...props} />
+		<Flex justifyContent={"center"}>
+			<Box w={"90%"} display={props.display?"block":"none"}>
+				<a onClick={() =>props.handleFavoUpdate(0)} href="#"> ★</a>
+      	<a onClick={() =>props.handleFavoUpdate(1)} href="#"> ★</a>
+      	<a onClick={() =>props.handleFavoUpdate(2)} href="#"> ★</a>
+      	<a onClick={() =>props.handleFavoUpdate(3)} href="#"> ★</a><br />
+				<Box textAlign={"right"}>
+					<SubmitButton {...props} />
+				</Box>
 				<MemoForm {...props}/>
 			</Box>
+			</Flex>
 		</>
 	)
 };

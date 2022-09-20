@@ -4,11 +4,12 @@ import axios from 'axios';
 import * as CONSTANTS from "../constants.js";
 import makeHeaderToken from "../utility/makeHeaderToken";
 import ViewMap from "./GoogleMap.js"
-import { Link } from "react-router-dom";
+import { Box, Flex, Heading, Divider, Text } from '@chakra-ui/react';
 import {MemoFormSet} from "../components/MemoFormSet"
 import { LinkButton, ToggleButton } from "../components/parts/Button";
-
-
+import { Distance } from '../components/parts/Distance';
+import { MapLink } from '../components/parts/MapLink'
+import { FavoStarSet } from '../components/FavoStarSet';
 export default function Shoppage(props){
   const navigate = useNavigate();  
     const [ memo, setMemo] = useState({})
@@ -92,35 +93,57 @@ export default function Shoppage(props){
       getMemo(placeId, props.apiUserTokens)
     },[]);
 
-  
-        
-  return (
-    <> 
-      
-      <LinkButton to="/shoplist" txt="SHOPLISTへ" />
-      店名: {memo["shop-name"]}<br />
-      住所: {memo["shop-address"]}<br />
-      お気に入り: {memo["favorite"]}<br />
-      メモ: {memo["memo"]}<br />
-      <a onClick={() =>handleFavoUpdate(0)} href="#"> ★</a>
-      <a onClick={() =>handleFavoUpdate(1)} href="#"> ★</a>
-      <a onClick={() =>handleFavoUpdate(2)} href="#"> ★</a>
-      <a onClick={() =>handleFavoUpdate(3)} href="#"> ★</a><br />
-      
-      <ToggleButton
-       onClickTo={handleEditButton}
-       txt={'編集'}
-       />
 
-      
-      <MemoFormSet
-        value={memo["memo"]}
-        ph={"メモを入力"} doOnChange={event => setMemo((prev) => ({ ...prev, memo: event.target.value}))}
-        onClickTo={handleMemoSave}
-        txt="保存"
-        display={edit}
-        />
-     <br></br>
+  return (
+    <>       
+    <Box textAlign={"center"}>
+      <LinkButton to="/shoplist" txt="SHOPLISTへ" />
+    </Box>
+    <Flex justifyContent={"center"} mb={5}>
+      <Box w={"90%"} padding={3} background={"blue.50"} shadow="2xl" rounded="xl">
+        <Flex justifyContent={"center"}>
+          <Heading as={"h2"} size={"lg"} noOfLines={1} textAlign={"center"}>
+            {memo["shop-name"]}
+          </Heading>
+        </Flex>
+        <FavoStarSet favo={memo["favorite"]} />
+        <Divider arientation='horizontal' size={"lg"} />
+
+          <Flex justifyContent={"right"}>
+            <Box mr='3'>
+              <Distance distance={memo["distance-text"]} duration={memo["duration-text"]}/>
+              <Text fontSize='sm' textAlign={"right"} >{memo["shop-address"]}</Text>          
+            </Box>
+            <MapLink userBase={props.userBase} shopName={memo["shop-name"]} placeId={memo["place-id"]}/>
+          </Flex>
+
+          <Flex justifyContent={"center"}>
+            <Box w={"90%"} >
+              <Heading as={"h3"} size={"md"} noOfLines={1} margin={2}>
+                あなたのメモ
+              </Heading>
+              <Text fontSize='lg' ml={10} mr={10}>
+                {memo["memo"]}
+              </Text>
+            </Box>
+          </Flex>
+
+          <Box textAlign={"center"}>
+            <ToggleButton
+              onClickTo={handleEditButton}
+              txt={'編集'}
+              />
+          </Box>
+          <MemoFormSet
+            value={memo["memo"]}
+            ph={"メモを入力"} doOnChange={event => setMemo((prev) => ({ ...prev, memo: event.target.value}))}
+            onClickTo={handleMemoSave}
+            handleFavoUpdate={handleFavoUpdate}
+            txt="保存"
+            display={edit}
+            />
+        </Box>
+      </Flex>
     </>
   )
 }
