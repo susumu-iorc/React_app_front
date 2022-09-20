@@ -1,4 +1,4 @@
-import { GOOGLE_API_KEY } from "../sec.js";
+//import { GOOGLE_API_KEY } from "../sec.js";
 import React, { useCallback, useRef,useState, useEffect } from 'react';
 import { GoogleMap, useLoadScript, Marker} from "@react-google-maps/api";
 import PlaceInfo from "./PlaceInfo.js";
