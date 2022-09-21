@@ -1,4 +1,4 @@
-export const API_URL = "http://35.77.207.185"
+export const API_URL = "https://api.iorc.net"
 export const API_VERSION = "v1"
 const API_VERSION_PATH = "/" + API_VERSION
 

@@ -38,13 +38,6 @@ export default function Signup(props) {
 
     return (
       <>
-        <Box display={'block'}>
-          <Alert status='error' margin={"2"} >
-            <AlertIcon />
-            <AlertTitle>パスワードの注意</AlertTitle>
-            <AlertDescription>SSL化してないので大事なパスワードや個人情報を登録しないでください</AlertDescription>
-          </Alert>
-        </Box>
         <Box display={(error == 1)? 'block' : 'none'}>
           <Alert status='error' margin={"2"} >
             <AlertIcon />
